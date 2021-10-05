@@ -70,7 +70,7 @@
             </tbody>
         </table>
 
-        <div id="weightLimit"></div>
+        <div id="weightLimit">Weight 0/40</div>
     </div>
     <canvas id="HexCanvas" width="1000" height="700"></canvas>
 </section>
@@ -79,12 +79,38 @@
     let hexagonGrid = new HexagonGrid("HexCanvas", 50);
     hexagonGrid.drawHexGrid(7, 10, 50, 50, true);
 
+    function makeLocalCache(){
+        let soliderCount = 0
+        let carrierCount = 0
+
+        return {
+            setCarrierCount: function(count) {
+                carrierCount = count
+                let finalText = "Carrier: " + count
+                const node = document.getElementById("carrierCount")
+                node.innerText = finalText
+            },
+            getCarrierCount: function(){
+                return carrierCount
+            },
+            setSoldierCount: function(count) {
+                soliderCount = count
+                let finalText = "Soldier: " + count
+                const node = document.getElementById("soldierCount")
+                node.innerText = finalText
+            },
+            getSoldierCount: function(){
+                return soldierCount
+            }
+        }
+    }
+
     function setPlayerNameTitle(name){
         const node = document.getElementById("playerNameTitle")
         node.innerText = name
     }
 
-    function setSoldierCount(count){
+    /*function setSoldierCount(count){
         let finalText = "Soldiers: " + count
         const node = document.getElementById("soldierCount")
         node.innerText = finalText
@@ -94,7 +120,7 @@
         let finalText = "Carrier: " + count
         const node = document.getElementById("carrierCount")
         node.innerText = finalText
-    }
+    }*/
 
     function setInventoryItem(item, count){
         let goldWeightRatio = 4
@@ -143,6 +169,28 @@
         const weightNode = document.getElementById(weightString)
         countNode.innerText = count
         weightNode.innerText = weight
+        updateWeight()
+    }
+
+
+    function updateWeight(){
+        const goldWeight = parseFloat(document.getElementById("goldWeight").innerText)
+        const foodWeight = parseFloat(document.getElementById("foodWeight").innerText)
+        const waterWeight = parseFloat(document.getElementById("waterWeight").innerText)
+        const giftWeight = parseFloat(document.getElementById("giftWeight").innerText)
+        const canoeWeight = parseFloat(document.getElementById("canoeWeight").innerText)
+        const gemstoneWeight = parseFloat(document.getElementById("gemstoneWeight").innerText)
+        const furWeight = parseFloat(document.getElementById("furWeight").innerText)
+        const artPieceWeight = parseFloat(document.getElementById("artPieceWeight").innerText)
+        const totalWeight = goldWeight + foodWeight + waterWeight + giftWeight + canoeWeight + canoeWeight +
+            gemstoneWeight + furWeight + artPieceWeight
+
+        const weightLimit = 40 + 40 * cache.getCarrierCount()
+
+        const finalWeightString = "Weight: " + totalWeight + "/" + weightLimit
+
+        const nodeToEdit = document.getElementById("weightLimit")
+        nodeToEdit.innerText = finalWeightString
         checkWeightLimit()
     }
 
@@ -158,8 +206,8 @@
 
     function makeInitialHUD(){
         setPlayerNameTitle("Senor Rasmus")
-        setSoldierCount(20)
-        setCarrierCount(20)
+        cache.setSoldierCount(20)
+        cache.setCarrierCount(20)
         setInventoryItem("gold", 5)
         setInventoryItem("food", 20)
         setInventoryItem("water", 10)
@@ -170,6 +218,7 @@
         setInventoryItem("artPiece", 20)
     }
 
+    let cache = makeLocalCache()
     makeInitialHUD()
 </script>
 
