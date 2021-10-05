@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/gridstyles.css">
+    <link rel="stylesheet" href="../static/gridstyles.css">
 </head>
 <body>
 <div class="main">
     <div id="gameboard" class="container"></div>
 </div>
-
+<script src="tiles.js"></script>
 <script>
     let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown']
     let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp']
     function loadHexagons(){
         document.getElementById('gameboard').innerHTML = generateUnexploredHexagonsHTML(100)
     }
+
     function generateUnexploredHexagonsHTML(count){
         let hexagonsHTML = ""
         for (let i = 0; i < count; i++) {
@@ -36,6 +37,7 @@
         hexagon.style.backgroundColor=color
         hexagon.innerHTML=`<br><br>${terrainType}`
         hexagon.onclick=undefined
+        createTileObject(null,1,1,false,false,false,false,false,false,typeNumber,6,7,"none",null)
     }
     function generateHexagonsHTML(cols,rows){
         let hexagonsHTML = ""
@@ -62,6 +64,7 @@
     loadHexagons()
     //document.onload = loadHexagons
 </script>
+
 
 </body>
 </html>

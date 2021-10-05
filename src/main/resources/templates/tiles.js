@@ -3,6 +3,10 @@ let tile = {id:"1", x_pos:1, y_pos:1, tile_at_point_one:false, tile_at_point_two
     tile_type:1, movement_points:6, id_civ:7, civ_name:"None", attitude:undefined}
 
 
+
+
+
+
 function createTileObject(id,x,y,tile1,tile2,tile3,tile4,tile5,tile6,tileType,mp,civID,civName,att) {
 
     let tileTest = {
@@ -11,5 +15,5 @@ function createTileObject(id,x,y,tile1,tile2,tile3,tile4,tile5,tile6,tileType,mp
         tile_type: tileType, movement_points: mp, id_civ: civID, civ_name: civName, attitude: att
     }
 
-    console.log(tileTest)
+    return console.log(tileTest)
 }
