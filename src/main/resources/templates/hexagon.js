@@ -7,8 +7,12 @@ function HexagonGrid(canvasId, radius) {
     this.width = 2 * radius;
     this.side = (3 / 2) * radius;
 
+
+
     this.canvas = document.getElementById(canvasId);
     this.context = this.canvas.getContext('2d');
+
+
 
     this.canvasOriginX = 0;
     this.canvasOriginY = 0;
@@ -93,8 +97,8 @@ HexagonGrid.prototype.getRelativeCanvasOffset = function() {
     }
 }
 
-//Uses a grid overlay algorithm to determine hexagon location
-//Left edge of grid has a test to acuratly determin correct hex
+// Uses a grid overlay algorithm to determine hexagon location
+// Left edge of grid has a test to acuratly determin correct hex
 HexagonGrid.prototype.getSelectedTile = function(mouseX, mouseY) {
 
     let offSet = this.getRelativeCanvasOffset();
@@ -193,6 +197,48 @@ HexagonGrid.prototype.clickEvent = function (e) {
         let drawy = tile.column % 2 == 0 ? (tile.row * this.height) + this.canvasOriginY + 6 : (tile.row * this.height) + this.canvasOriginY + 6 + (this.height / 2);
         let drawx = (tile.column * this.side) + this.canvasOriginX;
 
-        this.drawHex(drawx, drawy - 6, "rgba(110,110,70,0.3)", "");
+        this.drawHex(drawx, drawy - 6, display_random_image(), "");
     }
 };
+
+function display_random_image()
+{
+
+
+    let theImages = [{
+        src: "https://api.time.com/wp-content/uploads/2017/08/mountain-day-2017-5742983679836160-2x.jpg",
+        width: "240",
+        height: "160"
+    }, {
+        src: "https://api.time.com/wp-content/uploads/2017/08/mountain-day-2017-5742983679836160-2x.jpg",
+        width: "320",
+        height: "195"
+    }, {
+        src: "https://api.time.com/wp-content/uploads/2017/08/mountain-day-2017-5742983679836160-2x.jpg",
+        width: "500",
+        height: "343"
+    }];
+
+    let preBuffer = [];
+    for (let i = 0, j = theImages.length; i < j; i++) {
+        preBuffer[i] = new Image();
+        preBuffer[i].src = theImages[i].src;
+        preBuffer[i].width = theImages[i].width;
+        preBuffer[i].height = theImages[i].height;
+    }
+
+// create random image number
+    function getRandomInt(min,max)
+    {
+        //  return Math.floor(Math.random() * (max - min + 1)) + min;
+
+        imn = Math.floor(Math.random() * (max - min + 1)) + min;
+        return preBuffer[imn];
+    }
+
+// 0 is first image,   preBuffer.length - 1) is  last image
+
+    let newImage = getRandomInt(0, preBuffer.length - 1);
+// display the image
+document.body.appendChild(newImage);
+}
