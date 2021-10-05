@@ -16,19 +16,20 @@
     function loadHexagons(){
         document.getElementById('gameboard').innerHTML = generateHexagonsHTML(20,20)
     }
-    function generateUnexploredHexagonsHTML(count){
-        let hexagonsHTML = ""
-
-        for (let i = 0; i < count; i++) {
-            hexagonsHTML += `<div
-                    class="hexagon"
-                    id="hexagon-${i}"
-                    style="background-image: ${terrainColors[0]}"
-                    onclick="explore(${i})"
-                ><br><br>${terrainTypes[0]}</div>`
-        }
-        return hexagonsHTML
-    }
+    //Denne funktion bruger vi ikke mere... eller gør vi?
+    // function generateUnexploredHexagonsHTML(count){
+    //     let hexagonsHTML = ""
+    //
+    //     for (let i = 0; i < count; i++) {
+    //         hexagonsHTML += `<div
+    //                 class="hexagon"
+    //                 id="hexagon-${i}"
+    //                 style="background-image: ${terrainColors[0]}"
+    //                 onclick="explore(${i})"
+    //             ><br><br>${terrainTypes[0]}</div>`
+    //     }
+    //     return hexagonsHTML
+    // }
     function explore(cols,rows){
 
         let test = "hexagon-"+cols+"-"+rows
@@ -41,6 +42,7 @@
         hexagon.innerHTML=`<br><br>${terrainType}`
         hexagon.onclick=undefined
     }
+
     function generateHexagonsHTML(cols,rows){
         let hexagonsHTML = ""
         for (let row = 0; row < rows; row++) {
