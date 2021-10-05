@@ -1,225 +1,50 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Hex</title>
-    <link rel="stylesheet" href="/../static/stylesheet.css">
-    <script src="hexagon.js"></script>
+    <meta charset="utf-8">
+    <title>Example of Auto Loading Bootstrap Modal on Page Load</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+    });
+    </script>
 </head>
 <body>
-<section>
-    <div class="sideBar">
-        <h1 id="playerNameTitle" class="playerTitle"></h1>
-
-
-        <h3 id="soldierCount" class="soldierCount"></h3>
-        <h3 id="carrierCount" class="carrierCount"></h3>
-
-        <!--Somehow the table doesn't show without this -->
-        <h2 style="height: 50px"></h2>
-
-        <h2>Inventory</h2>
-
-        <table>
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th>Amount</th>
-                <th>Weight</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Gold</td>
-                <td id="goldCount">0</td>
-                <td id="goldWeight">0</td>
-            </tr>
-            <tr>
-                <td>Food</td>
-                <td id="foodCount">0</td>
-                <td id="foodWeight">0</td>
-            </tr>
-            <tr>
-                <td>Water</td>
-                <td id="waterCount">0</td>
-                <td id="waterWeight">0</td>
-            </tr>
-            <tr>
-                <td>Gifts</td>
-                <td id="giftCount">0</td>
-                <td id="giftWeight">0</td>
-            </tr>
-            <tr>
-                <td>Canoes</td>
-                <td id="canoeCount">0</td>
-                <td id="canoeWeight">0</td>
-            </tr>
-            <tr>
-                <td>Gemstones</td>
-                <td id="gemstoneCount">0</td>
-                <td id="gemstoneWeight">0</td>
-            </tr>
-            <tr>
-                <td>Fur</td>
-                <td id="furCount">0</td>
-                <td id="furWeight">0</td>
-            </tr>
-            <tr>
-                <td>Piece of Art</td>
-                <td id="artPieceCount">0</td>
-                <td id="artPieceWeight">0</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div id="weightLimit">Weight 0/40</div>
+<!--Modal-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Welcome to Columbus Game</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Choose a player name, and enter a game duration in minutes</p>
+                <form method="POST" action="gameboardHTML.html">
+                    <div class="form-group">
+                        <!--                        Player name-->
+                        <input type="text" class="form-control" placeholder="Player Name">
+                    </div>
+                    <div class="form-group">
+                        <!--                        Game duration-->
+                        <input type="number" class="form-control" placeholder="Game Duration">
+                    </div>
+                    <div class="form-group">
+                        <!--                        Join game-->
+                        <input type="text" class="form-control" placeholder="Join with Game ID">
+                    </div>
+                    <button type="submit" class="btn btn-primary" >Start Game</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <canvas id="HexCanvas" width="1000" height="700"></canvas>
-</section>
+</div>
+<!--End of modal-->
 
-<script>
-    let hexagonGrid = new HexagonGrid("HexCanvas", 50);
-    hexagonGrid.drawHexGrid(7, 10, 50, 50, true);
-
-    function makeLocalCache(){
-        let soliderCount = 0
-        let carrierCount = 0
-
-        return {
-            setCarrierCount: function(count) {
-                carrierCount = count
-                let finalText = "Carrier: " + count
-                const node = document.getElementById("carrierCount")
-                node.innerText = finalText
-            },
-            getCarrierCount: function(){
-                return carrierCount
-            },
-            setSoldierCount: function(count) {
-                soliderCount = count
-                let finalText = "Soldier: " + count
-                const node = document.getElementById("soldierCount")
-                node.innerText = finalText
-            },
-            getSoldierCount: function(){
-                return soldierCount
-            }
-        }
-    }
-
-    function setPlayerNameTitle(name){
-        const node = document.getElementById("playerNameTitle")
-        node.innerText = name
-    }
-
-    /*function setSoldierCount(count){
-        let finalText = "Soldiers: " + count
-        const node = document.getElementById("soldierCount")
-        node.innerText = finalText
-    }
-
-    function setCarrierCount(count){
-        let finalText = "Carrier: " + count
-        const node = document.getElementById("carrierCount")
-        node.innerText = finalText
-    }*/
-
-    function setInventoryItem(item, count){
-        let goldWeightRatio = 4
-        let foodWeightRatio = 0.5
-        let waterWeightRatio = 0.5
-        let giftWeightRatio = 2
-        let canoeWeightRatio = 3
-        let gemstoneWeightRatio = 2
-        let furWeightRatio = 5
-        let artPieceWeightRatio = 3
-
-        switch(item) {
-            case "gold":
-                updateItem(item, count, count*goldWeightRatio)
-                break;
-            case "food":
-                updateItem(item, count, count*foodWeightRatio)
-                break;
-            case "water":
-                updateItem(item, count, count*waterWeightRatio)
-                break;
-            case "gift":
-                updateItem(item, count, count*giftWeightRatio)
-                break;
-            case "canoe":
-                updateItem(item, count, count*canoeWeightRatio)
-                break;
-            case "gemstone":
-                updateItem(item, count, count*gemstoneWeightRatio)
-                break;
-            case "fur":
-                updateItem(item, count, count*furWeightRatio)
-                break;
-            case "artPiece":
-                updateItem(item, count, count*artPieceWeightRatio)
-                break;
-            default:
-            throw new Error("Item name doesn't exist")
-        }
-    }
-
-    function updateItem(item, count, weight){
-        const countString = item + "Count"
-        const weightString = item + "Weight"
-        const countNode = document.getElementById(countString)
-        const weightNode = document.getElementById(weightString)
-        countNode.innerText = count
-        weightNode.innerText = weight
-        updateWeight()
-    }
-
-
-    function updateWeight(){
-        const goldWeight = parseFloat(document.getElementById("goldWeight").innerText)
-        const foodWeight = parseFloat(document.getElementById("foodWeight").innerText)
-        const waterWeight = parseFloat(document.getElementById("waterWeight").innerText)
-        const giftWeight = parseFloat(document.getElementById("giftWeight").innerText)
-        const canoeWeight = parseFloat(document.getElementById("canoeWeight").innerText)
-        const gemstoneWeight = parseFloat(document.getElementById("gemstoneWeight").innerText)
-        const furWeight = parseFloat(document.getElementById("furWeight").innerText)
-        const artPieceWeight = parseFloat(document.getElementById("artPieceWeight").innerText)
-        const totalWeight = goldWeight + foodWeight + waterWeight + giftWeight + canoeWeight + canoeWeight +
-            gemstoneWeight + furWeight + artPieceWeight
-
-        const weightLimit = 40 + 40 * cache.getCarrierCount()
-
-        const finalWeightString = "Weight: " + totalWeight + "/" + weightLimit
-
-        const nodeToEdit = document.getElementById("weightLimit")
-        nodeToEdit.innerText = finalWeightString
-        checkWeightLimit()
-    }
-
-    function checkWeightLimit(){
-        //TODO: This function should react when weight limit is reached
-    }
-
-    //Updates HUD by getting info from server
-    function updateHUD(){
-        //TODO: Make this
-    }
-
-
-    function makeInitialHUD(){
-        setPlayerNameTitle("Senor Rasmus")
-        cache.setSoldierCount(20)
-        cache.setCarrierCount(20)
-        setInventoryItem("gold", 5)
-        setInventoryItem("food", 20)
-        setInventoryItem("water", 10)
-        setInventoryItem("gift", 20)
-        setInventoryItem("canoe", 20)
-        setInventoryItem("gemstone", 20)
-        setInventoryItem("fur", 20)
-        setInventoryItem("artPiece", 20)
-    }
-
-    let cache = makeLocalCache()
-    makeInitialHUD()
-</script>
 
 </body>
+
+</html>
