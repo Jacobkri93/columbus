@@ -29,4 +29,4 @@ VALUES
 
 INSERT INTO players (DEFAULT,amount_of_carriers, amount_of_soldiers, gold, inventory_id,)
 VALUES
-(),
+(fuckdigmichael),
