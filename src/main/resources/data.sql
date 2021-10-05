@@ -7,6 +7,7 @@ VALUES
 (DEFAULT,3,10,0,0,0,0,0,10,20);
 
 
+
 INSERT INTO civilisations (name_type,attitude)
 VALUES
 ('village','neutral'),
