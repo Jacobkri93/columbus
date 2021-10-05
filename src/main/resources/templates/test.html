@@ -11,25 +11,29 @@
 </div>
 
 <script>
-    let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown']
-    let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp']
+    let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown','cyan']
+    let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp','Coast']
     function loadHexagons(){
-        document.getElementById('gameboard').innerHTML = generateUnexploredHexagonsHTML(100)
+        document.getElementById('gameboard').innerHTML = generateHexagonsHTML(20,20)
     }
     function generateUnexploredHexagonsHTML(count){
         let hexagonsHTML = ""
+
         for (let i = 0; i < count; i++) {
             hexagonsHTML += `<div
                     class="hexagon"
                     id="hexagon-${i}"
-                    style="background-color: ${terrainColors[0]}"
+                    style="background-image: ${terrainColors[0]}"
                     onclick="explore(${i})"
                 ><br><br>${terrainTypes[0]}</div>`
         }
         return hexagonsHTML
     }
-    function explore(id){
-        let hexagon=document.getElementById("hexagon-"+id)
+    function explore(cols,rows){
+
+        let test = "hexagon-"+cols+"-"+rows
+        console.log(test)
+        let hexagon=document.getElementById("hexagon-"+cols+"-"+rows)
         let typeNumber=1+Math.floor(Math.random()*6)
         let color=terrainColors[typeNumber]
         let terrainType=terrainTypes[typeNumber]
@@ -43,17 +47,18 @@
             hexagonsHTML+=`<div>`
             for(let col=0; col < cols-(row%2); col++) {
                 let typeNumber
-                if(row==0||row==rows-1||col==0||col==cols-(row%2)-1)
-                    typeNumber=4
-                else
-                    typeNumber = 1 + Math.floor(Math.random() * 6)
-                let color = terrainColors[typeNumber]
-                let terrainType = terrainTypes[typeNumber]
+
                 hexagonsHTML += `<div
                         class="hexagon"
                         id="hexagon-${col}-${row}"
-                        style="background-color: ${color}"
-                    ><br><br>${terrainType}</div>`
+                        style="background-color: ${terrainColors[0]}"
+                        onclick="explore(${col},${row})"
+                    ><br><br>${terrainTypes[0]}</div>`
+                if(row==0||row==rows-1||col==0){
+                    typeNumber=4
+                }
+                else if(col==cols-(row%2)-1)
+                    typeNumber=7
             }
             hexagonsHTML+=`</div>`
         }
