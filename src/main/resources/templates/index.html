@@ -69,6 +69,8 @@
             </tr>
             </tbody>
         </table>
+
+        <div id="weightLimit"></div>
     </div>
     <canvas id="HexCanvas" width="1000" height="700"></canvas>
 </section>
@@ -141,10 +143,20 @@
         const weightNode = document.getElementById(weightString)
         countNode.innerText = count
         weightNode.innerText = weight
+        checkWeightLimit()
     }
 
-    //Updates HUD by getting info from server, hardcoded for now
+    function checkWeightLimit(){
+        //TODO: This function should react when weight limit is reached
+    }
+
+    //Updates HUD by getting info from server
     function updateHUD(){
+        //TODO: Make this
+    }
+
+
+    function makeInitialHUD(){
         setPlayerNameTitle("Senor Rasmus")
         setSoldierCount(20)
         setCarrierCount(20)
@@ -158,7 +170,7 @@
         setInventoryItem("artPiece", 20)
     }
 
-    updateHUD()
+    makeInitialHUD()
 </script>
 
 </body>
