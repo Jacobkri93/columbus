@@ -304,14 +304,12 @@
                     break;
 
                 default:
-                    debugger
                     let count = countMap.get(tile)
                     let newCount = count + 1
                     countMap.set(tile, newCount)
                     if(maxCount < newCount){
                         maxCount++
                     }
-                    debugger
                     break;
             }
         }
@@ -328,7 +326,6 @@
                 arrSize++
             }
         }
-        debugger
         let randInt = getRandomInt(arrSize)
 
         const returnMap = new Map()
@@ -358,7 +355,6 @@
         }
 
         returnMap.set(returnKey, maxCount)
-        debugger
         return returnMap
     }
 
@@ -367,33 +363,28 @@
         let hexagon=document.getElementById("hexagon-"+cols+"-"+rows)
 
         //dice
-        let typeNumber = getRandomInt(10)
+        let diceThrow = getRandomInt(10)
 
         const sameFieldMap = count(cols, rows)
 
         let sameField;
         let sameFieldCount
-        debugger
         if(sameFieldMap === null){
             sameFieldCount = 1;
         } else {
             for (let tileID of sameFieldMap.keys()) {
                 sameField = tileID
             }
-            debugger
+
             sameFieldCount = sameFieldMap.get(sameField)
 
         }
-        debugger
-        console.log("Samefield: " + sameField)
-        console.log("SamefieldCount: " + sameFieldCount)
-        console.log("Typenumber: " + typeNumber)
 
         let color;
         let terrainType;
         //Et eller andet som tæller vædierne omliggende den explored
 
-        switch(typeNumber){
+        switch(diceThrow){
             case 1:
             case 2:
             case 3:
@@ -509,6 +500,30 @@
 
             default:
                 throw new Error("The dice thrower might be fucked")
+        }
+        if(terrainType != 4){
+            let diceThrowCiv = getRandomInt(10)
+            if(diceThrowCiv === 8 || diceThrowCiv === 9){
+                //create village
+                let diceThrowAttitude = getRandomInt(6)
+                if(diceThrowAttitude <3){
+                    //friendly
+                }else if(diceThrowAttitude < 5){
+                    //neutral
+                }else{
+                    //aggresive
+                }
+            }else if(diceThrowCiv === 10){
+                //create civ
+                let diceThrowAttitude = getRandomInt(6)
+                if(diceThrowAttitude <3){
+                    //friendly
+                }else if(diceThrowAttitude < 5){
+                    //neutral
+                }else{
+                    //aggresive
+                }
+            }
         }
         hexagon.onclick=undefined
     }
