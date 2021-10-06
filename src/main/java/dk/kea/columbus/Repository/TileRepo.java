@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public interface ColumbusRepository extends JpaRepository<Tile,Long> {
+public interface TileRepo extends JpaRepository<Tile,Long> {
 
 }
+
