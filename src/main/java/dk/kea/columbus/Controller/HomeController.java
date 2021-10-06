@@ -31,6 +31,8 @@ public class HomeController {
     @GetMapping("/tiles")
     public ResponseEntity<List<Tile>> findAll() {
         List<Tile> tiles = new ArrayList<>();
+        Tile tile = new Tile();
+        repository.save(tile);
         repository.findAll().forEach(tiles::add);  // x -> productList.add(x)
 
         return ResponseEntity.status(HttpStatus.OK).body(tiles);     // Httpstatus.OK = (code 200)

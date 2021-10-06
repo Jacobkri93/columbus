@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_player;
+    private Long id_player;
 
     @Column
     private int id_inventory;
@@ -34,7 +34,7 @@ public class Player {
 
     public Player (){}
 
-    public Player(int id_player, int id_inventory, int amount_of_carriers, int amount_of_soldiers, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
+    public Player(Long id_player, int id_inventory, int amount_of_carriers, int amount_of_soldiers, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
         this.id_player = id_player;
         this.id_inventory = id_inventory;
         this.amount_of_carriers = amount_of_carriers;
@@ -56,11 +56,11 @@ public class Player {
         this.id_inventory = id_inventory;
     }
 
-    public int getId_player() {
+    public Long getId_player() {
         return id_player;
     }
 
-    public void setId_player(int id_player) {
+    public void setId_player(Long id_player) {
         this.id_player = id_player;
     }
 

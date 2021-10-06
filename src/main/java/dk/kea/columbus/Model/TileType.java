@@ -8,7 +8,7 @@ public class TileType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_tile_type;
+    private Long id_tile_type;
     @Column
     private String tile_type_name;
     @Column
@@ -18,7 +18,7 @@ public class TileType {
 
     public TileType(){}
 
-    public TileType(int id_tile_type, String tile_type_name, int movement_points, int id_civilisation) {
+    public TileType(Long id_tile_type, String tile_type_name, int movement_points, int id_civilisation) {
         this.id_tile_type = id_tile_type;
         this.tile_type_name = tile_type_name;
         this.movement_points = movement_points;
@@ -31,11 +31,11 @@ public class TileType {
         this.id_civilisation = id_civilisation;
     }
 
-    public int getId_tile_type() {
+    public Long getId_tile_type() {
         return id_tile_type;
     }
 
-    public void setId_tile_type(int id) {
+    public void setId_tile_type(Long id) {
         this.id_tile_type = id;
     }
 

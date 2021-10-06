@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Civilisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_civilisation;
+    private Long id_civilisation;
     @Column
     private String civilisation_name;
     @Column
@@ -15,17 +15,17 @@ public class Civilisation {
 
     public Civilisation(){}
 
-    public Civilisation(int id_civilisation, String civilisation_name, String attitude) {
+    public Civilisation(Long id_civilisation, String civilisation_name, String attitude) {
         this.id_civilisation = id_civilisation;
         this.civilisation_name = civilisation_name;
         this.attitude = attitude;
     }
 
-    public int getId_civilisation() {
+    public Long getId_civilisation() {
         return id_civilisation;
     }
 
-    public void setId_civilisation(int id_civilisation) {
+    public void setId_civilisation(Long id_civilisation) {
         this.id_civilisation = id_civilisation;
     }
 
