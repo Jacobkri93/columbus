@@ -20,8 +20,6 @@ public class HomeController {
     private TileRepo tileRepo;
     private TileTypeRepo tileTypeRepo;
 
-    //Construktor injection istedet for autowired :)
-
     public HomeController(CivilisationRepo civilisationRepo, InventoryRepo inventoryRepo, PlayerRepo playerRepo, TileRepo tileRepo, TileTypeRepo tileTypeRepo){
         this.civilisationRepo = civilisationRepo;
         this.inventoryRepo = inventoryRepo;
@@ -32,16 +30,17 @@ public class HomeController {
     }
 
 
-    @GetMapping("/addPlayer")
-    public String addPlayer() {
-        return "/gameboard";
-    }
+
+    //@GetMapping("/addPlayer")
+    //public String addPlayer() {
+    //    return "/gameboard";
+    //}
 
     @PostMapping("/addPlayer")
     public String addPlayer(@ModelAttribute Player player, Model model) {
         playerRepo.save(player);
         model.addAttribute("player", player);
-        return "";
+        return "/gameboard.html";
     }
 
 
