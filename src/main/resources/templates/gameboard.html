@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<head>
+    <title>Hex</title>
+    <link rel="stylesheet" href="/../static/stylesheet.css">
+
+    <script src="hexagon.js"></script>
+</head>
+<body>
+
+<section>
+    <div class="sideBar">
+        <h1 id="playerNameTitle" class="playerTitle"></h1>
+
+
+        <h3 id="soldierCount" class="soldierCount"></h3>
+        <h3 id="carrierCount" class="carrierCount"></h3>
+
+        <!--Somehow the table doesn't show without this -->
+        <h2 style="height: 50px"></h2>
+
+        <h2>Inventory</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Gold</td>
+                <td id="goldCount">0</td>
+                <td id="goldWeight">0</td>
+            </tr>
+            <tr>
+                <td>Food</td>
+                <td id="foodCount">0</td>
+                <td id="foodWeight">0</td>
+            </tr>
+            <tr>
+                <td>Water</td>
+                <td id="waterCount">0</td>
+                <td id="waterWeight">0</td>
+            </tr>
+            <tr>
+                <td>Gifts</td>
+                <td id="giftCount">0</td>
+                <td id="giftWeight">0</td>
+            </tr>
+            <tr>
+                <td>Canoes</td>
+                <td id="canoeCount">0</td>
+                <td id="canoeWeight">0</td>
+            </tr>
+            <tr>
+                <td>Gemstones</td>
+                <td id="gemstoneCount">0</td>
+                <td id="gemstoneWeight">0</td>
+            </tr>
+            <tr>
+                <td>Fur</td>
+                <td id="furCount">0</td>
+                <td id="furWeight">0</td>
+            </tr>
+            <tr>
+                <td>Piece of Art</td>
+                <td id="artPieceCount">0</td>
+                <td id="artPieceWeight">0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div id="weightLimit">Weight 0/40</div>
+    </div>
+    <div class="main">
+        <div id="gameboard" class="container"></div>
+    </div>
+</section>
+
+<script>
+     function makeLocalCache() {
+        let soliderCount = 0
+        let carrierCount = 0
+
+        return {
+            setCarrierCount: function (count) {
+                carrierCount = count
+                let finalText = "Carrier: " + count
+                const node = document.getElementById("carrierCount")
+                node.innerText = finalText
+            },
+            getCarrierCount: function () {
+                return carrierCount
+            },
+            setSoldierCount: function (count) {
+                soliderCount = count
+                let finalText = "Soldier: " + count
+                const node = document.getElementById("soldierCount")
+                node.innerText = finalText
+            },
+            getSoldierCount: function () {
+                return soldierCount
+            }
+        }
+    }
+
+    function setPlayerNameTitle(name) {
+        const node = document.getElementById("playerNameTitle")
+        node.innerText = name
+    }
+
+    /*function setSoldierCount(count){
+        let finalText = "Soldiers: " + count
+        const node = document.getElementById("soldierCount")
+        node.innerText = finalText
+    }
+
+    function setCarrierCount(count){
+        let finalText = "Carrier: " + count
+        const node = document.getElementById("carrierCount")
+        node.innerText = finalText
+    }*/
+
+    function setInventoryItem(item, count) {
+        let goldWeightRatio = 4
+        let foodWeightRatio = 0.5
+        let waterWeightRatio = 0.5
+        let giftWeightRatio = 2
+        let canoeWeightRatio = 3
+        let gemstoneWeightRatio = 2
+        let furWeightRatio = 5
+        let artPieceWeightRatio = 3
+
+        switch (item) {
+            case "gold":
+                updateItem(item, count, count * goldWeightRatio)
+                break;
+            case "food":
+                updateItem(item, count, count * foodWeightRatio)
+                break;
+            case "water":
+                updateItem(item, count, count * waterWeightRatio)
+                break;
+            case "gift":
+                updateItem(item, count, count * giftWeightRatio)
+                break;
+            case "canoe":
+                updateItem(item, count, count * canoeWeightRatio)
+                break;
+            case "gemstone":
+                updateItem(item, count, count * gemstoneWeightRatio)
+                break;
+            case "fur":
+                updateItem(item, count, count * furWeightRatio)
+                break;
+            case "artPiece":
+                updateItem(item, count, count * artPieceWeightRatio)
+                break;
+            default:
+                throw new Error("Item name doesn't exist")
+        }
+    }
+
+    function updateItem(item, count, weight) {
+        const countString = item + "Count"
+        const weightString = item + "Weight"
+        const countNode = document.getElementById(countString)
+        const weightNode = document.getElementById(weightString)
+        countNode.innerText = count
+        weightNode.innerText = weight
+        updateWeight()
+    }
+
+
+    function updateWeight() {
+        const goldWeight = parseFloat(document.getElementById("goldWeight").innerText)
+        const foodWeight = parseFloat(document.getElementById("foodWeight").innerText)
+        const waterWeight = parseFloat(document.getElementById("waterWeight").innerText)
+        const giftWeight = parseFloat(document.getElementById("giftWeight").innerText)
+        const canoeWeight = parseFloat(document.getElementById("canoeWeight").innerText)
+        const gemstoneWeight = parseFloat(document.getElementById("gemstoneWeight").innerText)
+        const furWeight = parseFloat(document.getElementById("furWeight").innerText)
+        const artPieceWeight = parseFloat(document.getElementById("artPieceWeight").innerText)
+        const totalWeight = goldWeight + foodWeight + waterWeight + giftWeight + canoeWeight + canoeWeight +
+            gemstoneWeight + furWeight + artPieceWeight
+
+        const weightLimit = 40 + 40 * cache.getCarrierCount()
+
+        const finalWeightString = "Weight: " + totalWeight + "/" + weightLimit
+
+        const nodeToEdit = document.getElementById("weightLimit")
+        nodeToEdit.innerText = finalWeightString
+        checkWeightLimit()
+    }
+
+    function checkWeightLimit() {
+        //TODO: This function should react when weight limit is reached
+    }
+
+    //Updates HUD by getting info from server
+    function updateHUD() {
+        //TODO: Make this
+    }
+
+
+    function makeInitialHUD() {
+        setPlayerNameTitle("Senor Rasmus")
+        cache.setSoldierCount(20)
+        cache.setCarrierCount(20)
+        setInventoryItem("gold", 5)
+        setInventoryItem("food", 20)
+        setInventoryItem("water", 10)
+        setInventoryItem("gift", 20)
+        setInventoryItem("canoe", 20)
+        setInventoryItem("gemstone", 20)
+        setInventoryItem("fur", 20)
+        setInventoryItem("artPiece", 20)
+    }
+
+    let cache = makeLocalCache()
+    makeInitialHUD()
+</script>
+
+<!--Dette er starten på script til hexagrid-->
+<script>
+    let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown','cyan']
+    let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp','Coast']
+    function loadHexagons(){
+        document.getElementById('gameboard').innerHTML = generateHexagonsHTML(16,12)
+    }
+    function generateUnexploredHexagonsHTML(count){
+        let hexagonsHTML = ""
+
+        for (let i = 0; i < count; i++) {
+            hexagonsHTML += `<div
+                    class="hexagon"
+                    id="hexagon-${i}"
+                    style="background-image: ${terrainColors[0]}"
+                    onclick="explore(${i})"
+                ><br><br>${terrainTypes[0]}</div>`
+        }
+        return hexagonsHTML
+    }
+    function explore(cols,rows){
+
+        let test = "hexagon-"+cols+"-"+rows
+        console.log(test)
+        let hexagon=document.getElementById("hexagon-"+cols+"-"+rows)
+
+        //dice
+        let typeNumber=1+Math.floor(Math.random()*7)
+
+        let color=terrainColors[typeNumber]
+        let terrainType=terrainTypes[typeNumber]
+
+        hexagon.style.backgroundColor=color
+        hexagon.innerHTML=`<br><br>${terrainType}`
+        hexagon.onclick=undefined
+    }
+    function generateHexagonsHTML(cols,rows){
+        let hexagonsHTML = ""
+        for (let row = 0; row < rows; row++) {
+            hexagonsHTML+=`<div>`
+            for(let col=0; col < cols-(row%2); col++) {
+                if(row!=0||row!=rows-1||col!=0){
+                    hexagonsHTML += `<div
+                        class="hexagon"
+                        id="hexagon-${col}-${row}"
+                        style="background-color: ${terrainColors[0]}"
+                        onclick="explore(${col},${row})"
+                    ><br><br>${terrainTypes[0]}</div>`
+                }
+                //TODO: TIl i morgen - fixxx
+                if(col==cols-1){
+                    hexagonsHTML += `<div
+                    class="hexagon"
+                    id="hexagon-${col+1}-${row}"
+                    style="background-color: ${terrainColors[4]}"
+                    ><br><br>${terrainTypes[4]}
+                    </div>`
+
+                }
+                if(col==cols-2)
+                    hexagonsHTML += `<div
+                    class="hexagon"
+                    id="hexagon-${col+2}-${row}"
+                    style="background-color: ${terrainColors[7]}"
+                    ><br><br>${terrainTypes[7]}
+                    </div>`
+
+            }
+            hexagonsHTML+=`</div>`
+        }
+
+        return hexagonsHTML
+    }
+    loadHexagons()
+    //document.onload = loadHexagons
+</script>
+</body>
