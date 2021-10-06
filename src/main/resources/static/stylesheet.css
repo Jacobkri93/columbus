@@ -92,3 +92,10 @@ body{
             #000  0 var(--f)
     );
 }
+.player {
+    height: 15px;
+    width: 15px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    display: flex;
+}
