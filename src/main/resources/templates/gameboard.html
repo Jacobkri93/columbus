@@ -501,10 +501,16 @@
             default:
                 throw new Error("The dice thrower might be fucked")
         }
-        if(terrainType != 4){
+        debugger
+        if(terrainType !== "Sea"){
+            debugger
             let diceThrowCiv = getRandomInt(10)
             if(diceThrowCiv === 8 || diceThrowCiv === 9){
-                //create village
+                hexagon.setAttribute("data-civ", "Village")
+                let tileType = hexagon.innerHTML
+                let name = tileType + "Village"
+                hexagon.innerHTML = name
+
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
@@ -514,7 +520,10 @@
                     //aggresive
                 }
             }else if(diceThrowCiv === 10){
-                //create civ
+                hexagon.setAttribute("data-civ", "Civilization")
+                let tileType = hexagon.innerHTML
+                let name = tileType + "Civilization"
+                hexagon.innerHTML = name
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
@@ -524,6 +533,7 @@
                     //aggresive
                 }
             }
+        debugger
         }
         hexagon.onclick=undefined
     }
@@ -538,6 +548,7 @@
                         class="hexagon"
                         id="hexagon-${col}-${row}"
                         style="background-color: ${terrainColors[0]}"
+                        data-civ="none"
                         onclick="explore(${col},${row})"
                     ><br><br>${terrainTypes[0]}</div>`
                 }
