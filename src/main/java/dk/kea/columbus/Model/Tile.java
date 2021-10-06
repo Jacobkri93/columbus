@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Tile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(nullable = true) // idk
