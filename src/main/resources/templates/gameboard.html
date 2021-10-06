@@ -81,7 +81,7 @@
 
 <script>
      function makeLocalCache() {
-        let soliderCount = 0
+        let soldierCount = 0
         let carrierCount = 0
 
         return {
@@ -95,7 +95,7 @@
                 return carrierCount
             },
             setSoldierCount: function (count) {
-                soliderCount = count
+                soldierCount = count
                 let finalText = "Soldier: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
