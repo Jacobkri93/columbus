@@ -526,9 +526,9 @@
             default:
                 throw new Error("The dice thrower might be fucked")
         }
-        debugger
+
         if(terrainType !== "Sea"){
-            debugger
+
             let diceThrowCiv = getRandomInt(10)
             if(diceThrowCiv === 8 || diceThrowCiv === 9){
                 hexagon.setAttribute("data-civ", "Village")
@@ -539,10 +539,13 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
+                    hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
+                    hexagon.style.color = "yellow"
                 }else{
-                    //aggresive
+                    //enemies
+                    hexagon.style.color = "red"
                 }
             }else if(diceThrowCiv === 10){
                 hexagon.setAttribute("data-civ", "Civilization")
@@ -552,13 +555,16 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
+                    hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
+                    hexagon.style.color = "yellow"
                 }else{
-                    //aggresive
+                    //enemies
+                    hexagon.style.color = "red"
                 }
             }
-        debugger
+
         }
         hexagon.onclick=undefined
     }
