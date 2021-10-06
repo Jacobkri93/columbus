@@ -1,6 +1,7 @@
-package dk.kea.columbus.controller;
+package dk.kea.columbus.Controller;
 
 
+import dk.kea.columbus.Repository.ColumbusRepository;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

@@ -3,42 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/gridstyles.css">
+    <link rel="stylesheet" href="../static/gridstyles.css">
 </head>
 <body>
 <div class="main">
     <div id="gameboard" class="container"></div>
 </div>
-
+<script src="tiles.js"></script>
 <script>
     let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown']
     let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp']
     function loadHexagons(){
-        document.getElementById('gameboard').innerHTML = generateUnexploredHexagonsHTML(20,20)
+        document.getElementById('gameboard').innerHTML = generateUnexploredHexagonsHTML(100)
     }
-    function generateUnexploredHexagonsHTML(cols,rows){
+
+    function generateUnexploredHexagonsHTML(count){
         let hexagonsHTML = ""
-        for (let row = 0; row < rows; row++) {
-            hexagonsHTML += `<div>`
-            for(let col=0; col < cols-(row%2); col++) {
-                let typeNumber
-                if(row==0||row==rows-1||col==0||col==cols-(row%2)-1)
-                    typeNumber=4
-                else
-                    typeNumber = 1 + Math.floor(Math.random() * 6)
-                // let color = terrainColors[typeNumber]
-                // let terrainType = terrainTypes[typeNumber]
-                hexagonsHTML += `<div
-                        class="hexagon"
-                        id="hexagon-${col}-${row}"
-                        style="background-color: ${terrainColors[0]}"
-                        onclick="explore(${col}-${row})"
-                    ><br><br>${terrainTypes[0]}</div>`
-            }
-            hexagonsHTML+=`</div>`
+        for (let i = 0; i < count; i++) {
+            hexagonsHTML += `<div
+                    class="hexagon"
+                    id="hexagon-${i}"
+                    style="background-color: ${terrainColors[0]}"
+                    onclick="explore(${i})"
+                ><br><br>${terrainTypes[0]}</div>`
         }
         return hexagonsHTML
-
     }
     function explore(id){
         let hexagon=document.getElementById("hexagon-"+id)
@@ -48,6 +37,7 @@
         hexagon.style.backgroundColor=color
         hexagon.innerHTML=`<br><br>${terrainType}`
         hexagon.onclick=undefined
+        createTileObject(null,1,1,false,false,false,false,false,false,typeNumber,6,7,"none",null)
     }
     function generateHexagonsHTML(cols,rows){
         let hexagonsHTML = ""
@@ -66,16 +56,15 @@
                         id="hexagon-${col}-${row}"
                         style="background-color: ${color}"
                     ><br><br>${terrainType}</div>`
-                //createTileObject(null,col,row,false,false,false,false,false,false,typeNumber,6,7,"none",null)
             }
             hexagonsHTML+=`</div>`
-
         }
         return hexagonsHTML
     }
     loadHexagons()
     //document.onload = loadHexagons
 </script>
+
 
 </body>
 </html>
