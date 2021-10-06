@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
-    <title>Hex</title>
+    <title>Columbus Game</title>
     <link rel="stylesheet" href="../static/stylesheet.css">
+    <script src="player.js"></script>
 
     <script src="diceThrower.js"></script>
 </head>
@@ -73,12 +74,14 @@
         </table>
 
         <div id="weightLimit">Weight 0/40</div>
+        <button class="start_btn" onclick="createPlayerOnBoard()">START GAME</button>
     </div>
     <div class="main">
         <div id="gameboard" class="container"></div>
     </div>
 </section>
 
+<!--Sidebar / HUD-->
 <script>
     function makeLocalCache() {
         let soliderCount = 0
@@ -207,6 +210,7 @@
 
     function makeInitialHUD() {
         setPlayerNameTitle("Senor Rasmus")
+        //setPlayerNameTitle(sessionStorage.getItem("name"))
         cache.setSoldierCount(20)
         cache.setCarrierCount(20)
         setInventoryItem("gold", 5)
@@ -223,14 +227,35 @@
     makeInitialHUD()
 </script>
 
+<!--PlayerObject-->
+<span class="player">
+<script>
+
+
+    function createPlayerOnBoard() {
+        let player = new Player
+        //Marks the player position on board (RED) when clicking "START GAME"
+        player.xy_pos = document.getElementById("hexagon-16-5").style.backgroundColor = "red"
+        player.name = null
+        player.id = null
+        player.bp = 12;
+    }
+
+    createPlayerOnBoard()
+</script>
+</span>
+
 <!--Dette er starten på script til hexagrid-->
 <script>
-    let terrainColors=['silver','yellow','green','lime','blue','gray','saddlebrown','cyan']
-    let terrainTypes=['Unexplored','Dessert','Jungle','Grass','Sea','Mountains','Swamp','Coast']
-    function loadHexagons(){
-        document.getElementById('gameboard').innerHTML = generateHexagonsHTML(16,12)
+
+    let terrainColors = ['silver', 'yellow', 'green', 'lime', 'blue', 'gray', 'saddlebrown', 'cyan']
+    let terrainTypes = ['Unexplored', 'Dessert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
+
+    function loadHexagons() {
+        document.getElementById('gameboard').innerHTML = generateHexagonsHTML(16, 12)
     }
-    function generateUnexploredHexagonsHTML(count){
+
+    function generateUnexploredHexagonsHTML(count) {
         let hexagonsHTML = ""
 
         for (let i = 0; i < count; i++) {

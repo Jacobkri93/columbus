@@ -11,17 +11,17 @@
     padding: 20px;
 }
 
-.soldierCount{
+.soldierCount {
     float: left;
     height: 20px;
 }
 
-.carrierCount{
+.carrierCount {
     float: right;
     height: 20px;
 }
 
-table{
+table {
     border: 1px solid black;
     width: 300px;
     height: 400px;
@@ -30,13 +30,13 @@ table{
     padding: 5px;
 }
 
-td{
+td {
     border-top: 1px solid black;
     text-outline: black 1px;
     color: beige;
 }
 
-thead{
+thead {
     text-align: left;
 }
 
@@ -49,14 +49,16 @@ section::after {
     display: table;
     clear: both;
 }
-body{
+
+body {
     background-color: whitesmoke;
     /*width: 150%;*/
 }
+
 .main {
     display: flex;
-    --size: 100px;  /* size  */
-    --margin: 1px;    /* margin */
+    --size: 100px; /* size  */
+    --margin: 1px; /* margin */
     --f: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
     /*width: 150%;*/
     float: right;
@@ -65,15 +67,16 @@ body{
 .container {
     font-size: 0; /*disable white space between inline block element */
 }
+
 .hexagon {
     display: inline-block;
     font-size: initial;
     text-align: center;
     margin: var(--margin);
     width: var(--size);
-    height: calc(var(--size)*1.1547);
+    height: calc(var(--size) * 1.1547);
     clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-    margin-bottom: calc(var(--margin) - var(--size)*0.2885);
+    margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
 
     /*
     height: var(--size);
@@ -82,13 +85,56 @@ body{
     margin-bottom: calc(var(--margin) - var(--size)*0.2885);
      */
 }
+
 .container::before {
     content: "";
-    width: calc(var(--size)/2 + var(--margin));
+    width: calc(var(--size) / 2 + var(--margin));
     float: left;
     height: 120%;
     shape-outside: repeating-linear-gradient(
             #0000 0 calc(var(--f) - 10px),
-            #000  0 var(--f)
+            #000 0 var(--f)
     );
+}
+
+.start_btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.start_btn{
+    background-color: sienna;
+    color: black;
+    border: 2px solid #4CAF50;
+    margin: 60px;
+
+    /*Hides button after click*/
+}
+.start_btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.player {
+
+    height: 15px;
+    width: 15px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    display: inline;
+}
+.player {
+    height: 15px;
+    width: 15px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    display: flex;
 }
