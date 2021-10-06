@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class HomeController {
 
@@ -24,8 +27,20 @@ public class HomeController {
     }
 
 
+    //HTTP GET (/tiles)<- URI
+    @GetMapping("/tiles")
+    public ResponseEntity<List<Tile>> findAll() {
+        List<Tile> tiles = new ArrayList<>();
+        repository.findAll().forEach(tiles::add);  // x -> productList.add(x)
+
+        return ResponseEntity.status(HttpStatus.OK).body(tiles);     // Httpstatus.OK = (code 200)
+        // body() fortæller headeren er færdigt bygget?? og parameteren er hvad som skal stå i bodyen???
+
+    }
+
+
     //HTTP POST Request
-    @PostMapping("/columbus")
+    @PostMapping(value="/columbus")
     public ResponseEntity<Tile> createTile(@RequestBody Tile tile){
 
         //hvis id er sat, så skal den ikke udføre det.
@@ -34,12 +49,6 @@ public class HomeController {
         }
 
         Tile myTile = repository.save(tile);
-
-        int x = myTile.getX_pos();
-        int y = myTile.getY_pos();
-
-        //location header
-        String location = "/products/"+myTile.getId();
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(myTile);
