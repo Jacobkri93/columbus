@@ -1,10 +1,11 @@
 package dk.kea.columbus.Controller;
 
+import dk.kea.columbus.Model.Player;
 import dk.kea.columbus.Model.Tile;
-import dk.kea.columbus.Repository.ColumbusRepository;
-import org.apache.coyote.Response;
+import dk.kea.columbus.Repository.TileRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,17 +14,24 @@ import java.util.List;
 @RestController
 public class HomeController {
 
-    private ColumbusRepository repository;
+    private TileRepository repository;
     //Construktor injection istedet for autowired :)
 
-    public HomeController(ColumbusRepository repo){
+    public HomeController(TileRepository repo){
         this.repository=repo;
     }
 
 
-    @GetMapping ("/index")
-    public String startUp (){
+    @GetMapping("/addPlayer")
+    public String addPlayer() {
         return "/gameboard";
+    }
+
+    @PostMapping("/addPlayer")
+    public String addPlayer(@ModelAttribute Player player, Model model) {
+        repository.save(player);
+        model.addAttribute("player", player);
+        return "";
     }
 
 
