@@ -3,6 +3,7 @@ package dk.kea.columbus.Controller;
 import dk.kea.columbus.Model.Player;
 import dk.kea.columbus.Model.Tile;
 import dk.kea.columbus.Repository.*;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -37,10 +38,18 @@ public class HomeController {
     //}
 
     @PostMapping("/addPlayer")
-    public String addPlayer(@ModelAttribute Player player, Model model) {
-        playerRepo.save(player);
-        model.addAttribute("player", player);
-        return "/gameboard.html";
+    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
+        Player player1 = new Player(5,10,10,20,200,12,5,3,3,2);
+        playerRepo.save(player1);
+
+        //location header
+        String location = "/gameboard.html";
+
+        //HTTPStatus Created 201
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Location",location)
+                .body(player1);
+
     }
 
 

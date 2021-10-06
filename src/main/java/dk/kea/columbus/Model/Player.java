@@ -135,4 +135,34 @@ public class Player {
     public void setPlayer_y_pos(int player_y_pos) {
         this.player_y_pos = player_y_pos;
     }
+
+    public Player(int id_inventory, int amount_of_carriers, int amount_of_soldiers, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
+        this.id_inventory = id_inventory;
+        this.amount_of_carriers = amount_of_carriers;
+        this.amount_of_soldiers = amount_of_soldiers;
+        this.currency = currency;
+        this.max_weight = max_weight;
+        this.remaining_bp = remaining_bp;
+        this.ship_x_pos = ship_x_pos;
+        this.ship_y_pos = ship_y_pos;
+        this.player_x_pos = player_x_pos;
+        this.player_y_pos = player_y_pos;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id_player=" + id_player +
+                ", id_inventory=" + id_inventory +
+                ", amount_of_carriers=" + amount_of_carriers +
+                ", amount_of_soldiers=" + amount_of_soldiers +
+                ", currency=" + currency +
+                ", max_weight=" + max_weight +
+                ", remaining_bp=" + remaining_bp +
+                ", ship_x_pos=" + ship_x_pos +
+                ", ship_y_pos=" + ship_y_pos +
+                ", player_x_pos=" + player_x_pos +
+                ", player_y_pos=" + player_y_pos +
+                '}';
+    }
 }
