@@ -1,6 +1,5 @@
-USE columbusgame;
-INSERT INTO inventories (id_inventory, player_id, amount_gold, amount_jewel, amount_art,
-                         amount_leather, amount_canoe, amount_gift, amount_water, amount_food)
+INSERT INTO inventories (id_inventory, amount_gold, amount_jewel, amount_art,
+                         amount_leather, amount_canoe, amount_gift, amount_water, amount_food,id_player)
 VALUES
 (DEFAULT,1,10,0,0,0,0,0,10,20),
 (DEFAULT,2,10,0,0,0,0,0,10,20),
