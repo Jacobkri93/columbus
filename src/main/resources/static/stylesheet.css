@@ -1,10 +1,17 @@
 .sideBar {
     float: right;
-    width: 300px;
+    /*width: 100%;*/
+    min-width: 300px;
     height: 95vh;
     padding: 10px;
     background: darkgray;
 }
+
+.SectionCss {
+    display: flex;
+    flex-flow: row-reverse;
+}
+
 
 .playerTitle {
     text-align: center;
@@ -54,6 +61,8 @@ body{
     /*width: 150%;*/
 }
 .main {
+    overflow-x: auto;
+    white-space: nowrap;
     display: flex;
     --size: 100px;  /* size  */
     --margin: 1px;    /* margin */
