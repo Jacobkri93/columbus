@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>Hex</title>
-    <link rel="stylesheet" href="../static/stylesheet.css">
+    <link rel="stylesheet" href="/../static/stylesheet.css">
 
     <script src="hexagon.js"></script>
 </head>
@@ -80,8 +80,8 @@
 </section>
 
 <script>
-     function makeLocalCache() {
-        let soldierCount = 0
+    function makeLocalCache() {
+        let soliderCount = 0
         let carrierCount = 0
 
         return {
@@ -95,7 +95,7 @@
                 return carrierCount
             },
             setSoldierCount: function (count) {
-                soldierCount = count
+                soliderCount = count
                 let finalText = "Soldier: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
@@ -243,22 +243,225 @@
         }
         return hexagonsHTML
     }
-    function explore(cols,rows){
 
-        let test = "hexagon-"+cols+"-"+rows
-        console.log(test)
+    function count(cols, rows){
+        const hexMap = new Map();
+        //Lige rækker
+        if(rows%2 ===0){
+            let hexagon1 = document.getElementById("hexagon-"+cols+"-"+(rows-1))
+            let hexagon2 = document.getElementById("hexagon-"+(cols+1)+"-"+rows)
+            let hexagon3 = document.getElementById("hexagon-"+cols+"-"+(rows+1))
+            let hexagon4 = document.getElementById("hexagon-"+(cols-1)+"-"+(rows+1))
+            let hexagon5 = document.getElementById("hexagon-"+(cols-1)+"-"+rows)
+            let hexagon6 = document.getElementById("hexagon-"+(cols-1)+"-"+(rows-1))
+            hexMap.set(hexagon1, hexagon1.style.backgroundColor)
+            hexMap.set(hexagon2, hexagon2.style.backgroundColor)
+            hexMap.set(hexagon3, hexagon3.style.backgroundColor)
+            hexMap.set(hexagon4, hexagon4.style.backgroundColor)
+            hexMap.set(hexagon5, hexagon5.style.backgroundColor)
+            hexMap.set(hexagon6, hexagon6.style.backgroundColor)
+        }
+        //Ulige rækker
+        if (rows%2 !== 0){
+            let hexagon1 = document.getElementById("hexagon-"+(cols+1)+"-"+(rows-1))
+            let hexagon2 = document.getElementById("hexagon-"+(cols+1)+"-"+rows)
+            let hexagon3 = document.getElementById("hexagon-"+(cols+1)+"-"+(rows+1))
+            let hexagon4 = document.getElementById("hexagon-"+cols+"-"+(rows+1))
+            let hexagon5 = document.getElementById("hexagon-"+(cols-1)+"-"+rows)
+            let hexagon6 = document.getElementById("hexagon-"+cols+"-"+(rows-1))
+            hexMap.set(hexagon1, hexagon1.style.backgroundColor)
+            hexMap.set(hexagon2, hexagon2.style.backgroundColor)
+            hexMap.set(hexagon3, hexagon3.style.backgroundColor)
+            hexMap.set(hexagon4, hexagon4.style.backgroundColor)
+            hexMap.set(hexagon5, hexagon5.style.backgroundColor)
+            hexMap.set(hexagon6, hexagon6.style.backgroundColor)
+        }
+        let maxCount = 0;
+
+        const countMap = new Map();
+        countMap.set("yellow", 0)
+        countMap.set("green", 0)
+        countMap.set("blue", 0)
+        countMap.set("lime", 0)
+        countMap.set("gray", 0)
+        countMap.set("saddlebrown", 0)
+
+        for(let tile of hexMap.values()){
+            switch (tile){
+                case "cyan":
+                    break;
+
+                case "silver":
+                    break;
+
+                default:
+                    let count = countMap.get(tile)
+                    let newCount = count++
+                    countMap.set(tile, newCount)
+                    if(maxCount < newCount){
+                        maxCount++
+                    }
+                    break;
+            }
+        }
+
+        if(maxCount === 1){
+            return null;
+        }
+
+        let set = new Set()
+        for(let counter of countMap.keys()){
+            if(countMap.get(counter) === maxCount){
+                set.add(counter)
+            }
+        }
+
+        //TODO: fix this
+        return null
+
+    }
+    function explore(cols,rows){
         let hexagon=document.getElementById("hexagon-"+cols+"-"+rows)
 
         //dice
-        let typeNumber=1+Math.floor(Math.random()*7)
+        let typeNumber=1+Math.floor(Math.random()*10)
 
-        let color=terrainColors[typeNumber]
-        let terrainType=terrainTypes[typeNumber]
+        let sameFieldCount = 0;
 
-        hexagon.style.backgroundColor=color
-        hexagon.innerHTML=`<br><br>${terrainType}`
+        let color;
+        let terrainType;
+        //Et eller andet som tæller vædierne omliggende den explored
+
+        switch(typeNumber){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                if(sameFieldCount === 2){
+                    // color=terrainColors[sameField]
+                    // terrainType=terrainTypes[sameField]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+                if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[sameField]
+                    // terrainType=terrainTypes[sameField]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+                else
+                    color=terrainColors[3]
+                terrainType=terrainTypes[3]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+            case 5:
+            case 6:
+                if(sameFieldCount === 2){
+                    // color=terrainColors[grass]
+                    // terrainType=terrainTypes[grass]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+                if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[sameField]
+                    // terrainType=terrainTypes[sameField]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+
+                else
+                    color=terrainColors[2]
+                terrainType=terrainTypes[2]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+
+            case 7:
+                if(sameFieldCount === 2){
+                    // color=terrainColors[jungle]
+                    // terrainType=terrainTypes[jungle]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }else if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[grass]
+                    // terrainType=terrainTypes[grass]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+                else
+                    color=terrainColors[5]
+                terrainType=terrainTypes[5]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+
+            case 8:
+                if(sameFieldCount === 2){
+                    // color=terrainColors[mountain]
+                    // terrainType=terrainTypes[mountain]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+
+                }else if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[jungle]
+                    // terrainType=terrainTypes[jungle]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }
+                else
+                    color=terrainColors[2]
+                terrainType=terrainTypes[2]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+
+            case 9:
+                if(sameFieldCount === 2){
+                    // color=terrainColors[dessert]
+                    // terrainType=terrainTypes[dessert]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }else if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[mountain]
+                    // terrainType=terrainTypes[mountain]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }else
+                    color=terrainColors[7]
+                terrainType=terrainTypes[7]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+
+            case 10:
+                if(sameFieldCount === 3 || sameFieldCount > 3){
+                    // color=terrainColors[dessert]
+                    // terrainType=terrainTypes[dessert]
+                    // hexagon.style.backgroundColor=color
+                    // hexagon.innerHTML=`<br><br>${terrainType}`
+                }else
+
+                    color=terrainColors[4]
+                terrainType=terrainTypes[4]
+                hexagon.style.backgroundColor=color
+                hexagon.innerHTML=`<br><br>${terrainType}`
+                break;
+
+            default:
+
+                break;
+        }
+
+        // let color=terrainColors[typeNumber]
+        // let terrainType=terrainTypes[typeNumber]
+        //
+        // hexagon.style.backgroundColor=color
+        // hexagon.innerHTML=`<br><br>${terrainType}`
         hexagon.onclick=undefined
+        console.log(typeNumber)
     }
+
     function generateHexagonsHTML(cols,rows){
         let hexagonsHTML = ""
         for (let row = 0; row < rows; row++) {
@@ -291,12 +494,16 @@
                     </div>`
 
             }
+
             hexagonsHTML+=`</div>`
         }
 
         return hexagonsHTML
     }
+
     loadHexagons()
+
+    // setTimeout(() => {count(5,2)}, 10000)
     //document.onload = loadHexagons
 </script>
 </body>
