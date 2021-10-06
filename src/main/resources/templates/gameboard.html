@@ -304,14 +304,12 @@
                     break;
 
                 default:
-                    debugger
                     let count = countMap.get(tile)
                     let newCount = count + 1
                     countMap.set(tile, newCount)
                     if(maxCount < newCount){
                         maxCount++
                     }
-                    debugger
                     break;
             }
         }
@@ -328,7 +326,6 @@
                 arrSize++
             }
         }
-        debugger
         let randInt = getRandomInt(arrSize)
 
         const returnMap = new Map()
@@ -358,7 +355,6 @@
         }
 
         returnMap.set(returnKey, maxCount)
-        debugger
         return returnMap
     }
 
@@ -373,21 +369,16 @@
 
         let sameField;
         let sameFieldCount
-        debugger
         if(sameFieldMap === null){
             sameFieldCount = 1;
         } else {
             for (let tileID of sameFieldMap.keys()) {
                 sameField = tileID
             }
-            debugger
+
             sameFieldCount = sameFieldMap.get(sameField)
 
         }
-        debugger
-        console.log("Samefield: " + sameField)
-        console.log("SamefieldCount: " + sameFieldCount)
-        console.log("Typenumber: " + typeNumber)
 
         let color;
         let terrainType;
