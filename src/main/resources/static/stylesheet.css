@@ -83,6 +83,7 @@ body {
 }
 
 .hexagon {
+
     display: inline-block;
     font-size: initial;
     text-align: center;
@@ -136,12 +137,37 @@ body {
     background-color: #4CAF50;
     color: white;
 }
-.hexButtonGrid{
 
+.hexButtonContainer::before {
+    content: "";
+    width: calc(var(--size) / 2 + var(--margin));
+    height: 120%;
+    float: left;
+    shape-outside: repeating-linear-gradient(
+            #0000 0 calc(var(--f) - 10px),
+            #000 0 var(--f)
+    );
+}
+
+.hexButtonGrid{
+    background-color: beige;
+    white-space: nowrap;
+    display: flex;
+    --size: 50px; /* size  */
+    --margin: 0px; /* margin */
+    --f: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
 }
 
 .hexButton{
-
+    display: inline-block;
+    font-size: initial;
+    text-align: center;
+    margin: var(--margin);
+    width: var(--size);
+    height: calc(var(--size) * 1.1547);
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
+    background-color: blueviolet;
 }
 
 div .hexagon{
