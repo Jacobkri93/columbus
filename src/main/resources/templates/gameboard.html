@@ -12,10 +12,9 @@
     <div class="sideBar">
         <h1 id="playerNameTitle" class="playerTitle"></h1>
 
-        <h3 id="monkCount" class="monkCount"></h3>
+
         <h3 id="soldierCount" class="soldierCount"></h3>
         <h3 id="carrierCount" class="carrierCount"></h3>
-
 
         <!--Somehow the table doesn't show without this -->
         <h2 style="height: 50px"></h2>
@@ -93,7 +92,7 @@
         return {
             setCarrierCount: function (count) {
                 carrierCount = count
-                let finalText = "Carriers: " + count
+                let finalText = "Carrier: " + count
                 const node = document.getElementById("carrierCount")
                 node.innerText = finalText
             },
@@ -101,21 +100,18 @@
                 return carrierCount
             },
             setSoldierCount: function (count) {
-                soliderCount = count
-                let finalText = "Soldiers: " + count
+                soldierCount = count
+                let finalText = "Soldier: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
             },
             getSoldierCount: function () {
                 return soldierCount
             },
-            setMonkCount: function (count) {
-                carrierCount = count
-                let finalText = "Monks: " + count
-                const node = document.getElementById("monkCount")
-                node.innerText = finalText
+            setMonks: function(count) {
+                monkCount = count
             },
-            getMonkCount: function () {
+            getMonkCount: function() {
                 return monkCount
             },
             setPlayer: function(newPlayer) {
@@ -132,17 +128,6 @@
         node.innerText = name
     }
 
-    /*function setSoldierCount(count){
-        let finalText = "Soldiers: " + count
-        const node = document.getElementById("soldierCount")
-        node.innerText = finalText
-    }
-
-    function setCarrierCount(count){
-        let finalText = "Carrier: " + count
-        const node = document.getElementById("carrierCount")
-        node.innerText = finalText
-    }*/
 
     function setInventoryItem(item, count) {
         let goldWeightRatio = 4
@@ -231,7 +216,6 @@
         //setPlayerNameTitle(sessionStorage.getItem("name"))
         cache.setSoldierCount(20)
         cache.setCarrierCount(20)
-        cache.setMonkCount(2)
         setInventoryItem("gold", 5)
         setInventoryItem("food", 20)
         setInventoryItem("water", 10)
@@ -256,9 +240,9 @@
 
         cache.setPlayer(player)
     }
-
-    createPlayerOnBoard()
     makeInitialHUD()
+    createPlayerOnBoard()
+
 
     function getAdjacentTiles(col, row){
 
@@ -310,33 +294,30 @@
         let nodeId = "hexagon-"+ col + "-" + row
         document.getElementById(nodeId).style.backgroundColor = "red"
     }
+    function tryConvert(col, row) {
+        const nodeId = "hexagon-" + col + "-" + row
+        const tile = document.getElementById(nodeId)
+        let monkThrow = getRandomInt(7)
+        if (monkThrow === 1) {
+            name = tile.innerHTML + " Converted Civilization"
+            tile.setAttribute("data-civ", "MONK Village")
+            tile.style.color = "green"
+            tile.innerHTML = name
+        }
+    }
 
 </script>
 
 
 
 <!--Dette er starten på script til hexagrid-->
-<script src="player.js">
+<script>
 
     let terrainColors = ['silver', 'yellow', 'green', 'lime', 'blue', 'gray', 'saddlebrown', 'cyan']
     let terrainTypes = ['Unexplored', 'Dessert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
 
     function loadHexagons() {
         document.getElementById('gameboard').innerHTML = generateHexagonsHTML(16, 12)
-    }
-
-    function generateUnexploredHexagonsHTML(count) {
-        let hexagonsHTML = ""
-
-        for (let i = 0; i < count; i++) {
-            hexagonsHTML += `<div
-                    class="hexagon"
-                    id="hexagon-${i}"
-                    style="background-image: ${terrainColors[0]}"
-                    onclick="explore(${i})"
-                ><br><br>${terrainTypes[0]}</div>`
-        }
-        return hexagonsHTML
     }
 
 
@@ -610,13 +591,6 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
-                    let monkThrow = getRandomInt(7)
-                    if (monkThrow===1){
-                        name = tileType + "Converted Village"
-                        hexagon.setAttribute("data-civ","MONK Village")
-                        hexagon.style.color = "green"
-                        hexagon.innerHTML = name
-                    } else
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
@@ -633,13 +607,6 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
-                    let monkThrow = getRandomInt(7)
-                    if(monkThrow === 1){
-                        name = tileType + "Converted Civilization"
-                        hexagon.setAttribute("data-civ","MONK Civilization")
-                        hexagon.style.color = "green"
-                        hexagon.innerHTML = name
-                    }
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
@@ -696,7 +663,5 @@
 
     loadHexagons()
 
-    // setTimeout(() => {count(5,2)}, 10000)
-    //document.onload = loadHexagons
 </script>
 </body>
