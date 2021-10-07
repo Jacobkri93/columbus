@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,17 +88,17 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
     }
 
-    @GetMapping("/players/{x_pos}/{y_pos}")
-    public ResponseEntity<Player> findPlayerByCoord(@PathVariable("x_pos") int x,
-                                                    @PathVariable("y_pos") int y){
-
-        Optional<Player> player = playerRepo.findPlayerByPlayer_x_posAndPlayer_y_pos(x,y);
-        if (player.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(player.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
+    //@GetMapping("/players/{x_pos}/{y_pos}")
+    //public ResponseEntity<Player> findPlayerByCoord(@PathVariable("x_pos") int x,
+    //                                                @PathVariable("y_pos") int y){
+//
+    //    Optional<Player> player = playerRepo.findPlayerByPlayer_x_posAndPlayer_y_pos(x,y);
+    //    if (player.isPresent()){
+    //        return ResponseEntity.status(HttpStatus.OK).body(player.get());
+    //    } else {
+    //        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    //    }
+    //}
 
 
     @GetMapping("/inventories/{id}") //inventory id
@@ -112,15 +111,15 @@ public class HomeController {
         }
     }
 
-    @GetMapping ("/inventories/{id_player}") //player Id
-    public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
-        Optional<Inventory> inventory = inventoryRepo.findInventoryById_player(id);
-        if (inventory.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
+   // @GetMapping ("/inventories/{id_player}") //player Id
+   // public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
+   //     Optional<Inventory> inventory = inventoryRepo.findInventoryById_player(id);
+   //     if (inventory.isPresent()){
+   //         return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
+   //     } else {
+   //         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+   //     }
+   // }
 
     @GetMapping("tiletypes/{id}")
     public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
@@ -142,18 +141,18 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/civilisation/{x_pos}/{y_pos}")
-    public ResponseEntity<Civilisation> findCivilisationByXandY(@PathVariable("x_pos")int x,
-                                                                @PathVariable("y_pos") int y){
-        Optional<Civilisation> civ = civilisationRepo.findCivilisationByX_posAndY_pos(x,y);
-        if (civ.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(civ.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
+   @GetMapping("/civilisation/{x_pos}/{y_pos}")
+   public ResponseEntity<Civilisation> findCivilisationByXandY(@PathVariable("x_pos")int x,
+                                                               @PathVariable("y_pos") int y){
+       Optional<Civilisation> civ = civilisationRepo.findCivilisationByXPosAndYPos(x,y);
+       if (civ.isPresent()){
+           return ResponseEntity.status(HttpStatus.OK).body(civ.get());
+       } else {
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+       }
+   }
 
-    @GetMapping("/temp_exp_tile")
+    //@GetMapping("/temp_exp_tile")
 
 
 
