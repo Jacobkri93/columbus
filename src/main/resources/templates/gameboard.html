@@ -12,13 +12,13 @@
     <div class="sideBar">
         <h1 id="playerNameTitle" class="playerTitle"></h1>
 
-
+        <h3 id="monkCount" class="monkCount"></h3>
         <h3 id="soldierCount" class="soldierCount"></h3>
         <h3 id="carrierCount" class="carrierCount"></h3>
 
+
         <!--Somehow the table doesn't show without this -->
         <h2 style="height: 50px"></h2>
-
         <h2>Inventory</h2>
 
         <table>
@@ -86,11 +86,12 @@
     function makeLocalCache() {
         let soliderCount = 0
         let carrierCount = 0
+        let monkCount = 0
 
         return {
             setCarrierCount: function (count) {
                 carrierCount = count
-                let finalText = "Carrier: " + count
+                let finalText = "Carriers: " + count
                 const node = document.getElementById("carrierCount")
                 node.innerText = finalText
             },
@@ -99,15 +100,23 @@
             },
             setSoldierCount: function (count) {
                 soliderCount = count
-                let finalText = "Soldier: " + count
+                let finalText = "Soldiers: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
             },
             getSoldierCount: function () {
                 return soldierCount
-            }
+            },
+            setMonkCount: function (count) {
+                carrierCount = count
+                let finalText = "Monks: " + count
+                const node = document.getElementById("monkCount")
+                node.innerText = finalText
+            },
+            getMonkCount: function () {
+                return monkCount
         }
-    }
+    }}
 
     function setPlayerNameTitle(name) {
         const node = document.getElementById("playerNameTitle")
@@ -213,6 +222,7 @@
         //setPlayerNameTitle(sessionStorage.getItem("name"))
         cache.setSoldierCount(20)
         cache.setCarrierCount(20)
+        cache.setMonkCount(2)
         setInventoryItem("gold", 5)
         setInventoryItem("food", 20)
         setInventoryItem("water", 10)

@@ -28,6 +28,10 @@
     float: right;
     height: 20px;
 }
+.monkCount {
+    float: initial;
+    height: 20px;
+}
 
 table {
     border: 1px solid black;
@@ -123,7 +127,7 @@ body {
 .start_btn{
     background-color: sienna;
     color: black;
-    border: 2px solid #4CAF50;
+    border: 2px solid #ffffff;
     margin: 60px;
 
     /*Hides button after click*/
@@ -133,18 +137,6 @@ body {
     color: white;
 }
 
-.player {
 
-    height: 15px;
-    width: 15px;
-    background-color: #ff0000;
-    border-radius: 50%;
-    display: inline;
-}
-.player {
-    height: 15px;
-    width: 15px;
-    background-color: #ff0000;
-    border-radius: 50%;
-    display: flex;
-}
+
+
