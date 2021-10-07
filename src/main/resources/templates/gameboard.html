@@ -12,9 +12,10 @@
     <div class="sideBar">
         <h1 id="playerNameTitle" class="playerTitle"></h1>
 
-
+        <h3 id="monkCount" class="monkCount"></h3>
         <h3 id="soldierCount" class="soldierCount"></h3>
         <h3 id="carrierCount" class="carrierCount"></h3>
+
 
         <!--Somehow the table doesn't show without this -->
         <h2 style="height: 50px"></h2>
@@ -92,7 +93,7 @@
         return {
             setCarrierCount: function (count) {
                 carrierCount = count
-                let finalText = "Carrier: " + count
+                let finalText = "Carriers: " + count
                 const node = document.getElementById("carrierCount")
                 node.innerText = finalText
             },
@@ -100,18 +101,21 @@
                 return carrierCount
             },
             setSoldierCount: function (count) {
-                soldierCount = count
-                let finalText = "Soldier: " + count
+                soliderCount = count
+                let finalText = "Soldiers: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
             },
             getSoldierCount: function () {
                 return soldierCount
             },
-            setMonks: function(count) {
-                monkCount = count
+            setMonkCount: function (count) {
+                carrierCount = count
+                let finalText = "Monks: " + count
+                const node = document.getElementById("monkCount")
+                node.innerText = finalText
             },
-            getMonkCount: function() {
+            getMonkCount: function () {
                 return monkCount
             },
             setPlayer: function(newPlayer) {
@@ -216,6 +220,7 @@
         //setPlayerNameTitle(sessionStorage.getItem("name"))
         cache.setSoldierCount(20)
         cache.setCarrierCount(20)
+        cache.setMonkCount(2)
         setInventoryItem("gold", 5)
         setInventoryItem("food", 20)
         setInventoryItem("water", 10)
@@ -227,6 +232,7 @@
     }
 
     let cache = makeLocalCache()
+    makeInitialHUD()
 
     function createPlayerOnBoard() {
         let player = new Player
@@ -240,7 +246,6 @@
 
         cache.setPlayer(player)
     }
-    makeInitialHUD()
     createPlayerOnBoard()
 
 
@@ -591,6 +596,13 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
+                    let monkThrow = getRandomInt(7)
+                    if (monkThrow===1){
+                        name = tileType + "Converted Village"
+                        hexagon.setAttribute("data-civ","MONK Village")
+                        hexagon.style.color = "green"
+                        hexagon.innerHTML = name
+                    } else
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
@@ -607,6 +619,13 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
+                    let monkThrow = getRandomInt(7)
+                    if(monkThrow === 1){
+                        name = tileType + "Converted Civilization"
+                        hexagon.setAttribute("data-civ","MONK Civilization")
+                        hexagon.style.color = "green"
+                        hexagon.innerHTML = name
+                    }
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
@@ -660,8 +679,9 @@
 
         return hexagonsHTML
     }
-
     loadHexagons()
 
+    // setTimeout(() => {count(5,2)}, 10000)
+    //document.onload = loadHexagons
 </script>
 </body>
