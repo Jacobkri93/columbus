@@ -1,12 +1,9 @@
 package dk.kea.columbus.Controller;
 
-import dk.kea.columbus.Model.Player;
-import dk.kea.columbus.Model.Tile;
+import dk.kea.columbus.Model.*;
 import dk.kea.columbus.Repository.*;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -30,12 +27,45 @@ public class HomeController {
 
     }
 
+    //HTTP GET (/tiles)<- URI
+    @GetMapping("/tiles")
+    public ResponseEntity<List<Tile>> findAllTiles() {
+        List<Tile> tiles = new ArrayList<>();
+        tileRepo.findAll().forEach(tiles::add);  // x -> list.add(x)
+
+        return ResponseEntity.status(HttpStatus.OK).body(tiles);     // Httpstatus.OK = (code 200)
+    }
+
+    //HTTP GET tile_types
+    @GetMapping("/tiletypes")
+    public ResponseEntity<List<TileType>> findAllTileTypes(){
+        List<TileType> tileTypes = new ArrayList<>();
+        tileTypeRepo.findAll().forEach(tileTypes::add);
+        return ResponseEntity.status(HttpStatus.OK).body(tileTypes);
+    }
+
+    @GetMapping("/players")
+    public ResponseEntity<List<Player>> findAllPlayers(){
+        List<Player> players = new ArrayList<>();
+        playerRepo.findAll().forEach(players::add);
+        return ResponseEntity.status(HttpStatus.OK).body(players);
+    }
+
+    @GetMapping("/civilisations")
+    public ResponseEntity<List<Civilisation>> findAllCivilisations(){
+        List<Civilisation> civs = new ArrayList<>();
+        civilisationRepo.findAll().forEach(civs::add);
+        return ResponseEntity.status(HttpStatus.OK).body(civs);
+    }
+
+    @GetMapping("/inventories")
+    public ResponseEntity<List<Inventory>> findAllInventories(){
+        List<Inventory> inventories = new ArrayList<>();
+        inventoryRepo.findAll().forEach(inventories::add);
+        return ResponseEntity.status(HttpStatus.OK).body(inventories);
+    }
 
 
-    //@GetMapping("/addPlayer")
-    //public String addPlayer() {
-    //    return "/gameboard";
-    //}
 
     @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping("/addPlayer")
@@ -55,26 +85,12 @@ public class HomeController {
     }
 
 
-    //HTTP GET (/tiles)<- URI
-    @GetMapping("/tiles")
-    public ResponseEntity<List<Tile>> findAll() {
-        List<Tile> tiles = new ArrayList<>();
-        Tile tile = new Tile();
-        tileRepo.save(tile);
-        tileRepo.findAll().forEach(tiles::add);  // x -> productList.add(x)
-
-        return ResponseEntity.status(HttpStatus.OK).body(tiles);     // Httpstatus.OK = (code 200)
-        // body() fortæller headeren er færdigt bygget?? og parameteren er hvad som skal stå i bodyen???
-
-    }
-
-
     //HTTP POST Request
     @PostMapping(value="/columbus")
     public ResponseEntity<Tile> createTile(@RequestBody Tile tile){
 
         //hvis id er sat, så skal den ikke udføre det.
-        if (tile.getId()!=null){
+        if (tile.getId_tile()!=null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
