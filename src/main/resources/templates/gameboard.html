@@ -243,7 +243,7 @@
     }
 
     let cache = makeLocalCache()
-
+    makeInitialHUD()
     function createPlayerOnBoard() {
         let player = new Player
         //Marks the player position on board (RED) when clicking "START GAME"
@@ -256,12 +256,9 @@
 
         cache.setPlayer(player)
     }
-
     createPlayerOnBoard()
-    makeInitialHUD()
 
     function getAdjacentTiles(col, row){
-
         let hexArr = []
         //Lige rækker
         if(row%2 === 0){
@@ -312,8 +309,6 @@
     }
 
 </script>
-
-
 
 <!--Dette er starten på script til hexagrid-->
 <script src="player.js">
@@ -693,7 +688,6 @@
 
         return hexagonsHTML
     }
-
     loadHexagons()
 
     // setTimeout(() => {count(5,2)}, 10000)
