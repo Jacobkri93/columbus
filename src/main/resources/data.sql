@@ -1,3 +1,8 @@
+-- Start New game schema
+
+
+-- Start New Game Data
+
 INSERT INTO civilisations (civilisation_name,attitude)
 VALUES
     ('village','neutral'),
@@ -18,8 +23,8 @@ VALUES
     ('ocean',4,7),
     ('oceantoland',6,7) ;
 
-INSERT INTO players (id_inventory,amount_of_carriers, amount_of_soldiers, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
-VALUES (1,10,10,20,500,12,5,5,6,6);
+INSERT INTO players (id_inventory,amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
+VALUES (1,10,10,2,20,500,12,5,5,6,6);
 
 
 INSERT INTO inventories (id_inventory, amount_gold, amount_jewel, amount_art,

@@ -37,9 +37,11 @@ public class HomeController {
     //    return "/gameboard";
     //}
 
+    @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping("/addPlayer")
-    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
-        Player player1 = new Player(5,10,10,20,200,12,5,3,3,2);
+    public ResponseEntity<Player> addPlayer() {
+        Player player1 = new Player(5,10,10,2,20,
+                200,12,5,3,3,2);
         playerRepo.save(player1);
 
         //location header
