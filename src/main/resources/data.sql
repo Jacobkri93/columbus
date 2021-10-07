@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`civilisations` (
     `attitude_player_two` VARCHAR(45) NULL,
     `attitude_player_three` VARCHAR(45) NULL,
     `attitude_player_four` VARCHAR(45) NULL,
+    `x_pos` INT NULL,
+    `y_pos` INT NULL,
     PRIMARY KEY (`id_civilisation`),
     UNIQUE INDEX `id_civilisation_UNIQUE` (`id_civilisation` ASC) )
     ENGINE = InnoDB;
@@ -114,15 +116,15 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`inventories` (
 -- Start New Game Data
 
 
-INSERT INTO civilisations (civilisation_name,attitude_player_one,attitude_player_two,attitude_player_three,attitude_player_four)
+INSERT INTO civilisations (civilisation_name,attitude_player_one,attitude_player_two,attitude_player_three,attitude_player_four,x_pos,y_pos)
 VALUES
-    ('village','neutral','neutral','neutral','neutral'),
-    ('village','hostile','hostile','hostile','hostile'),
-    ('village','friendly','friendly','friendly','friendly'),
-    ('civilisation','neutral','neutral','neutral','neutral'),
-    ('civilisation','hostile','hostile','hostile','hostile'),
-    ('civilisation','friendly','friendly','friendly','friendly'),
-    ('none',null,null,null,null);
+    ('village','neutral','neutral','neutral','neutral',1,2),
+    ('village','hostile','hostile','hostile','hostile',3,4),
+    ('village','friendly','friendly','friendly','friendly',5,6),
+    ('civilisation','neutral','neutral','neutral','neutral',7,8),
+    ('civilisation','hostile','hostile','hostile','hostile',9,10),
+    ('civilisation','friendly','friendly','friendly','friendly',6,5),
+    ('none',null,null,null,null,null,null);
 
 INSERT INTO tile_types (tile_type_name,movement_points,id_civilisation)
 VALUES
