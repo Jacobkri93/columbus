@@ -96,12 +96,13 @@
                 let finalText = "Carriers: " + count
                 const node = document.getElementById("carrierCount")
                 node.innerText = finalText
+                updateWeight()
             },
             getCarrierCount: function () {
                 return carrierCount
             },
             setSoldierCount: function (count) {
-                soliderCount = count
+                soldierCount = count
                 let finalText = "Soldiers: " + count
                 const node = document.getElementById("soldierCount")
                 node.innerText = finalText
@@ -110,7 +111,7 @@
                 return soldierCount
             },
             setMonkCount: function (count) {
-                carrierCount = count
+                monkCount = count
                 let finalText = "Monks: " + count
                 const node = document.getElementById("monkCount")
                 node.innerText = finalText
@@ -195,7 +196,7 @@
         const artPieceWeight = parseFloat(document.getElementById("artPieceWeight").innerText)
         const totalWeight = goldWeight + foodWeight + waterWeight + giftWeight + canoeWeight + canoeWeight +
             gemstoneWeight + furWeight + artPieceWeight
-
+        debugger
         const weightLimit = 40 + 40 * cache.getCarrierCount()
 
         const finalWeightString = "Weight: " + totalWeight + "/" + weightLimit
@@ -596,13 +597,6 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
-                    let monkThrow = getRandomInt(7)
-                    if (monkThrow===1){
-                        name = tileType + "Converted Village"
-                        hexagon.setAttribute("data-civ","MONK Village")
-                        hexagon.style.color = "green"
-                        hexagon.innerHTML = name
-                    } else
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
@@ -619,13 +613,6 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if(diceThrowAttitude <3){
                     //friendly
-                    let monkThrow = getRandomInt(7)
-                    if(monkThrow === 1){
-                        name = tileType + "Converted Civilization"
-                        hexagon.setAttribute("data-civ","MONK Civilization")
-                        hexagon.style.color = "green"
-                        hexagon.innerHTML = name
-                    }
                     hexagon.style.color = "green"
                 }else if(diceThrowAttitude < 5){
                     //neutral
