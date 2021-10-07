@@ -11,14 +11,64 @@ public class Civilisation {
     @Column
     private String civilisation_name;
     @Column
-    private String attitude;
+    private String attitude_player_one;
+    @Column
+    private String attitude_player_two;
+    @Column
+    private String attitude_player_three;
+    @Column
+    private String attitude_player_four;
+
 
     public Civilisation(){}
 
-    public Civilisation(Long id_civilisation, String civilisation_name, String attitude) {
+    public Civilisation(Long id_civilisation, String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four) {
         this.id_civilisation = id_civilisation;
         this.civilisation_name = civilisation_name;
-        this.attitude = attitude;
+        this.attitude_player_one = attitude_player_one;
+        this.attitude_player_two = attitude_player_two;
+        this.attitude_player_three = attitude_player_three;
+        this.attitude_player_four = attitude_player_four;
+    }
+
+    public Civilisation(String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four) {
+        this.civilisation_name = civilisation_name;
+        this.attitude_player_one = attitude_player_one;
+        this.attitude_player_two = attitude_player_two;
+        this.attitude_player_three = attitude_player_three;
+        this.attitude_player_four = attitude_player_four;
+    }
+
+    public String getAttitude_player_one() {
+        return attitude_player_one;
+    }
+
+    public void setAttitude_player_one(String attitude_player_one) {
+        this.attitude_player_one = attitude_player_one;
+    }
+
+    public String getAttitude_player_two() {
+        return attitude_player_two;
+    }
+
+    public void setAttitude_player_two(String attitude_player_two) {
+        this.attitude_player_two = attitude_player_two;
+    }
+
+    public String getAttitude_player_three() {
+        return attitude_player_three;
+    }
+
+    public void setAttitude_player_three(String attitude_player_three) {
+        this.attitude_player_three = attitude_player_three;
+    }
+
+    public String getAttitude_player_four() {
+        return attitude_player_four;
+    }
+
+    public void setAttitude_player_four(String attitude_player_four) {
+        this.attitude_player_four = attitude_player_four;
     }
 
     public Long getId_civilisation() {
@@ -37,11 +87,4 @@ public class Civilisation {
         this.civilisation_name = civilisation_name;
     }
 
-    public String getAttitude() {
-        return attitude;
     }
-
-    public void setAttitude(String attitude) {
-        this.attitude = attitude;
-    }
-}
