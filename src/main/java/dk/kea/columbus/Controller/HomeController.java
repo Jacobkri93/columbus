@@ -69,8 +69,10 @@ public class HomeController {
     }
     //</editor-fold> // alle
 
+
     @GetMapping("/tiles/{x_pos}/{y_pos}")
-    public ResponseEntity<Tile> findTileByCoords(@PathVariable("x_pos") int x,@PathVariable("y_pos") int y){
+    public ResponseEntity<Tile> findTileByCoords(@PathVariable("x_pos") int x,
+                                                 @PathVariable("y_pos") int y){
         Optional<Tile> product = tileRepo.findTileByX_posAndY_pos(x,y);
         if(product.isPresent()){
             return ResponseEntity.status(HttpStatus.OK).body(product.get());
@@ -78,7 +80,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @GetMapping("/player/{id}")
+    @GetMapping("/players/{id}")
     public ResponseEntity<Player> findPlayerById(@PathVariable("id") Long id){
         Optional<Player> player = playerRepo.findById(id);
         if (player.isPresent()){
@@ -87,7 +89,20 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
     }
 
-    @GetMapping("/inventory/{id}")
+    @GetMapping("/players/{x_pos}/{y_pos}")
+    public ResponseEntity<Player> findPlayerByCoord(@PathVariable("x_pos") int x,
+                                                    @PathVariable("y_pos") int y){
+
+        Optional<Player> player = playerRepo.findPlayerByPlayer_x_posAndPlayer_y_pos(x,y);
+        if (player.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(player.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+
+    @GetMapping("/inventories/{id}") //inventory id
     public ResponseEntity<Inventory> findInventoryById(@PathVariable("id") Long id){
         Optional<Inventory> inventory = inventoryRepo.findById(id);
         if (inventory.isPresent()){
@@ -97,7 +112,17 @@ public class HomeController {
         }
     }
 
-    @GetMapping("tiletype/{id}")
+    @GetMapping ("/inventories/{id_player}") //player Id
+    public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
+        Optional<Inventory> inventory = inventoryRepo.findInventoryById_player(id);
+        if (inventory.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("tiletypes/{id}")
     public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
         Optional<TileType> tileType = tileTypeRepo.findById(id);
         if (tileType.isPresent()){
@@ -116,6 +141,21 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    @GetMapping("/civilisation/{x_pos}/{y_pos}")
+    public ResponseEntity<Civilisation> findCivilisationByXandY(@PathVariable("x_pos")int x,
+                                                                @PathVariable("y_pos") int y){
+        Optional<Civilisation> civ = civilisationRepo.findCivilisationByX_posAndY_pos(x,y);
+        if (civ.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(civ.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/temp_exp_tile")
+
+
 
 
 

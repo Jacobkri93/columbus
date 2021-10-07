@@ -18,25 +18,48 @@ public class Civilisation {
     private String attitude_player_three;
     @Column
     private String attitude_player_four;
-
+    @Column
+    private int x_pos;
+    @Column
+    private int y_pos;
 
     public Civilisation(){}
 
-    public Civilisation(Long id_civilisation, String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four) {
+    public Civilisation(Long id_civilisation, String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four, int x_pos, int y_pos) {
         this.id_civilisation = id_civilisation;
         this.civilisation_name = civilisation_name;
         this.attitude_player_one = attitude_player_one;
         this.attitude_player_two = attitude_player_two;
         this.attitude_player_three = attitude_player_three;
         this.attitude_player_four = attitude_player_four;
+        this.x_pos = x_pos;
+        this.y_pos = y_pos;
     }
 
-    public Civilisation(String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four) {
+    public Civilisation(String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four, int x_pos, int y_pos) {
         this.civilisation_name = civilisation_name;
         this.attitude_player_one = attitude_player_one;
         this.attitude_player_two = attitude_player_two;
         this.attitude_player_three = attitude_player_three;
         this.attitude_player_four = attitude_player_four;
+        this.x_pos = x_pos;
+        this.y_pos = y_pos;
+    }
+
+    public int getX_pos() {
+        return x_pos;
+    }
+
+    public void setX_pos(int x_pos) {
+        this.x_pos = x_pos;
+    }
+
+    public int getY_pos() {
+        return y_pos;
+    }
+
+    public void setY_pos(int y_pos) {
+        this.y_pos = y_pos;
     }
 
     public String getAttitude_player_one() {

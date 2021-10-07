@@ -1,5 +1,3 @@
--- Start New game schema
-
 -- -----------------------------------------------------
 -- Schema columbusgame
 -- -----------------------------------------------------
@@ -76,12 +74,12 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`tiles` (
     `tile_at_point_four` ENUM("true", "false") NULL,
     `tile_at_point_five` ENUM("true", "false") NULL,
     `tile_at_point_six` ENUM("true", "false") NULL,
-    `tile_type` INT NOT NULL,
+    `id_tile_type` INT NOT NULL,
     PRIMARY KEY (`id_tile`),
     UNIQUE INDEX `id_tile_UNIQUE` (`id_tile` ASC) ,
-    INDEX `fk_tiles_tile_types1_idx` (`tile_type` ASC) ,
+    INDEX `fk_tiles_tile_types1_idx` (`id_tile_type` ASC) ,
     CONSTRAINT `fk_tiles_tile_types1`
-    FOREIGN KEY (`tile_type`)
+    FOREIGN KEY (`id_tile_type`)
     REFERENCES `columbusgame`.`tile_types` (`id_tile_type`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -103,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`inventories` (
                                                             `amount_food` FLOAT NULL,
                                                             `id_player` INT NOT NULL,
                                                             PRIMARY KEY (`id_inventory`),
-    INDEX `fk_inventories_players1_idx` (`id_player` ASC) ,
     UNIQUE INDEX `id_inventory_UNIQUE` (`id_inventory` ASC) ,
+    INDEX `fk_inventories_players1_idx` (`id_player` ASC) ,
     CONSTRAINT `fk_inventories_players1`
     FOREIGN KEY (`id_player`)
     REFERENCES `columbusgame`.`players` (`id_player`)
@@ -113,7 +111,23 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`inventories` (
     ENGINE = InnoDB;
 
 
--- Start New Game Data
+-- -----------------------------------------------------
+-- Table `columbusgame`.`temp_exp_tiles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `columbusgame`.`temp_exp_tiles` (
+                                                               `id_temp_exp_tiles` INT NOT NULL AUTO_INCREMENT,
+                                                               `x_pos` INT NULL,
+                                                               `y_pos` INT NULL,
+                                                               `id_player` INT NOT NULL,
+                                                               PRIMARY KEY (`id_temp_exp_tiles`),
+    INDEX `fk_temp_exp_tiles_players1_idx` (`id_player` ASC) ,
+    CONSTRAINT `fk_temp_exp_tiles_players1`
+    FOREIGN KEY (`id_player`)
+    REFERENCES `columbusgame`.`players` (`id_player`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
 
 
 INSERT INTO civilisations (civilisation_name,attitude_player_one,attitude_player_two,attitude_player_three,attitude_player_four,x_pos,y_pos)
@@ -137,11 +151,12 @@ VALUES
     ('oceantoland',6,7) ;
 
 
-INSERT INTO tiles (tile_at_point_five, tile_at_point_four, tile_at_point_one, tile_at_point_six, tile_at_point_three, tile_at_point_two, tile_type, x_pos, y_pos) VALUES
-                                                                                                                                                                      (false,false,false,false,false,false,7,1,2),
-                                                                                                                                                                      (false,false,false,false,false,false,7,4,6);
-INSERT INTO players (id_inventory,amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
-VALUES (1,10,10,2,20,500,12,5,5,6,6);
+INSERT INTO tiles (x_pos, y_pos, tile_at_point_one, tile_at_point_two, tile_at_point_three, tile_at_point_four, tile_at_point_five, tile_at_point_six, id_tile_type)
+VALUES
+    (1,2,"false","false","false","false","false","false",7),
+    (4,6,"false","false","false","false","false","false",7);
+INSERT INTO players (amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
+VALUES (10,10,2,20,500,12,5,5,6,6);
 
 INSERT INTO inventories (id_inventory, amount_gold, amount_jewel, amount_art,
                          amount_leather, amount_canoe, amount_gift, amount_water, amount_food,id_player)

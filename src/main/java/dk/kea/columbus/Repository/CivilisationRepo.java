@@ -10,6 +10,6 @@ import java.util.Optional;
 @RestController
 public interface CivilisationRepo extends JpaRepository<Civilisation,Long> {
 
-    //public Optional<Civilisation> findCivilisationBy
+    public Optional<Civilisation> findCivilisationByX_posAndY_pos(int x,int y);
 
 }
