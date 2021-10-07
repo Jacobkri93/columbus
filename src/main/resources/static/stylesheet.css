@@ -78,6 +78,7 @@ body {
     float: right;
 }
 
+
 .container {
     font-size: 0; /*disable white space between inline block element */
 }
@@ -139,6 +140,7 @@ body {
 }
 
 .hexButtonContainer::before {
+
     content: "";
     width: calc(var(--size) / 2 + var(--margin));
     height: 120%;
@@ -149,7 +151,16 @@ body {
     );
 }
 
+.hexButtonContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateX(25%);
+}
+
 .hexButtonGrid{
+    height: 160px;
+    position: relative;
     background-color: beige;
     white-space: nowrap;
     display: flex;
@@ -174,4 +185,20 @@ div .hexagon{
     color: #ffffff;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
+}
+
+.some-1 {
+    position: absolute;
+    left: calc(var(--size) * 0.5);
+    margin: 5px 0 0 0;
+
+}.some-2 {
+     position: absolute;
+     left: 0;
+     top: var(--size);
+
+}.some-3 {
+      position: absolute;
+      top: calc((var(--size) * 2) - 5px );
+      left: calc(var(--size) * 0.5);
 }

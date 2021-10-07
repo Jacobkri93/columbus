@@ -727,7 +727,7 @@
     function createMoveButtons() {
         let hexagonsHTML = ""
         for (let row = 0; row < 3; row++) {
-            hexagonsHTML += `<div>`
+            hexagonsHTML += `<div class="some-${row + 1}">`
             for (let col = 0; col < 2 + (row % 2); col++) {
                 hexagonsHTML += `<div
                     class="hexButton"
