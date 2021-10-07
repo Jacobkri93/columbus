@@ -1,5 +1,6 @@
-let Player = function (xy_pos, size, name, bp, id){
-  this.xy_pos = xy_pos
+let Player = function (x_pos, y_pos, size, name, bp, id){
+  this.x_pos = x_pos
+  this.y_pos = y_pos
   this.name = name;
   this.bp = bp;
   this.id = id;
