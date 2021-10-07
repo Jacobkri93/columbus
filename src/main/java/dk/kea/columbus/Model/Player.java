@@ -18,6 +18,9 @@ public class Player {
     private int amount_of_soldiers;
 
     @Column
+    private int amount_of_monks;
+
+    @Column
     private float currency;
     @Column
     private float max_weight;
@@ -34,11 +37,26 @@ public class Player {
 
     public Player (){}
 
-    public Player(Long id_player, int id_inventory, int amount_of_carriers, int amount_of_soldiers, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
+    public Player(int id_inventory, int amount_of_carriers, int amount_of_soldiers, int amount_of_monks, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
+        this.id_inventory = id_inventory;
+        this.amount_of_carriers = amount_of_carriers;
+        this.amount_of_soldiers = amount_of_soldiers;
+        this.amount_of_monks = amount_of_monks;
+        this.currency = currency;
+        this.max_weight = max_weight;
+        this.remaining_bp = remaining_bp;
+        this.ship_x_pos = ship_x_pos;
+        this.ship_y_pos = ship_y_pos;
+        this.player_x_pos = player_x_pos;
+        this.player_y_pos = player_y_pos;
+    }
+
+    public Player(Long id_player, int id_inventory, int amount_of_carriers, int amount_of_soldiers, int amount_of_monks, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
         this.id_player = id_player;
         this.id_inventory = id_inventory;
         this.amount_of_carriers = amount_of_carriers;
         this.amount_of_soldiers = amount_of_soldiers;
+        this.amount_of_monks = amount_of_monks;
         this.currency = currency;
         this.max_weight = max_weight;
         this.remaining_bp = remaining_bp;
@@ -78,6 +96,14 @@ public class Player {
 
     public void setAmount_of_soldiers(int amount_of_soldiers) {
         this.amount_of_soldiers = amount_of_soldiers;
+    }
+
+    public int getAmount_of_monks() {
+        return amount_of_monks;
+    }
+
+    public void setAmount_of_monks(int amount_of_monks) {
+        this.amount_of_monks = amount_of_monks;
     }
 
     public float getCurrency() {
@@ -136,18 +162,6 @@ public class Player {
         this.player_y_pos = player_y_pos;
     }
 
-    public Player(int id_inventory, int amount_of_carriers, int amount_of_soldiers, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
-        this.id_inventory = id_inventory;
-        this.amount_of_carriers = amount_of_carriers;
-        this.amount_of_soldiers = amount_of_soldiers;
-        this.currency = currency;
-        this.max_weight = max_weight;
-        this.remaining_bp = remaining_bp;
-        this.ship_x_pos = ship_x_pos;
-        this.ship_y_pos = ship_y_pos;
-        this.player_x_pos = player_x_pos;
-        this.player_y_pos = player_y_pos;
-    }
 
     @Override
     public String toString() {
@@ -165,4 +179,6 @@ public class Player {
                 ", player_y_pos=" + player_y_pos +
                 '}';
     }
+
+
 }
