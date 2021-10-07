@@ -113,15 +113,16 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`inventories` (
 
 -- Start New Game Data
 
-INSERT INTO civilisations (civilisation_name,attitude)
+
+INSERT INTO civilisations (civilisation_name,attitude_player_one,attitude_player_two,attitude_player_three,attitude_player_four)
 VALUES
-    ('village','neutral'),
-    ('village','hostile'),
-    ('village','friendly'),
-    ('civilisation','neutral'),
-    ('civilisation','hostile'),
-    ('civilisation','friendly'),
-    ('none',null);
+    ('village','neutral','neutral','neutral','neutral'),
+    ('village','hostile','hostile','hostile','hostile'),
+    ('village','friendly','friendly','friendly','friendly'),
+    ('civilisation','neutral','neutral','neutral','neutral'),
+    ('civilisation','hostile','hostile','hostile','hostile'),
+    ('civilisation','friendly','friendly','friendly','friendly'),
+    ('none',null,null,null,null);
 
 INSERT INTO tile_types (tile_type_name,movement_points,id_civilisation)
 VALUES
@@ -133,9 +134,12 @@ VALUES
     ('ocean',4,7),
     ('oceantoland',6,7) ;
 
+
+INSERT INTO tiles (tile_at_point_five, tile_at_point_four, tile_at_point_one, tile_at_point_six, tile_at_point_three, tile_at_point_two, tile_type, x_pos, y_pos) VALUES
+                                                                                                                                                                      (false,false,false,false,false,false,7,1,2),
+                                                                                                                                                                      (false,false,false,false,false,false,7,4,6);
 INSERT INTO players (id_inventory,amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
 VALUES (1,10,10,2,20,500,12,5,5,6,6);
-
 
 INSERT INTO inventories (id_inventory, amount_gold, amount_jewel, amount_art,
                          amount_leather, amount_canoe, amount_gift, amount_water, amount_food,id_player)
