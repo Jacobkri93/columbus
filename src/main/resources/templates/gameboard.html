@@ -125,10 +125,10 @@
             getMonkCount: function () {
                 return monkCount
             },
-            setPlayer: function (newPlayer) {
+            setPlayer: function(newPlayer) {
                 player = newPlayer
             },
-            getPlayer: function () {
+            getPlayer: function(){
                 return player
             }
         }
@@ -272,12 +272,12 @@
             let hexagon5 = document.getElementById("hexagon-" + (col - 1) + "-" + row)
             let hexagon6 = document.getElementById("hexagon-" + (col - 1) + "-" + (row - 1))
 
-            if (hexagon1 != null) hexArr.push(hexagon1)
-            if (hexagon2 != null) hexArr.push(hexagon2)
-            if (hexagon3 != null) hexArr.push(hexagon3)
-            if (hexagon4 != null) hexArr.push(hexagon4)
-            if (hexagon5 != null) hexArr.push(hexagon5)
-            if (hexagon6 != null) hexArr.push(hexagon6)
+            if(hexagon1 != null) hexArr.push(hexagon1)
+            if(hexagon2 != null) hexArr.push(hexagon2)
+            if(hexagon3 != null) hexArr.push(hexagon3)
+            if(hexagon4 != null) hexArr.push(hexagon4)
+            if(hexagon5 != null) hexArr.push(hexagon5)
+            if(hexagon6 != null) hexArr.push(hexagon6)
         }
 
         //Ulige rækker
@@ -289,12 +289,12 @@
             let hexagon5 = document.getElementById("hexagon-" + (col - 1) + "-" + row)
             let hexagon6 = document.getElementById("hexagon-" + col + "-" + (row - 1))
 
-            if (hexagon1 != null) hexArr.push(hexagon1)
-            if (hexagon2 != null) hexArr.push(hexagon2)
-            if (hexagon3 != null) hexArr.push(hexagon3)
-            if (hexagon4 != null) hexArr.push(hexagon4)
-            if (hexagon5 != null) hexArr.push(hexagon5)
-            if (hexagon6 != null) hexArr.push(hexagon6)
+            if(hexagon1 != null) hexArr.push(hexagon1)
+            if(hexagon2 != null) hexArr.push(hexagon2)
+            if(hexagon3 != null) hexArr.push(hexagon3)
+            if(hexagon4 != null) hexArr.push(hexagon4)
+            if(hexagon5 != null) hexArr.push(hexagon5)
+            if(hexagon6 != null) hexArr.push(hexagon6)
         }
         return hexArr
     }
@@ -603,8 +603,8 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if (diceThrowAttitude < 3) {
                     //friendly
-                    hexagon.style.color = "green"
-                } else if (diceThrowAttitude < 5) {
+                    hexagon.style.color = "lawngreen"
+                }else if(diceThrowAttitude < 5){
                     //neutral
                     hexagon.style.color = "yellow"
                 } else {
@@ -619,8 +619,8 @@
                 let diceThrowAttitude = getRandomInt(6)
                 if (diceThrowAttitude < 3) {
                     //friendly
-                    hexagon.style.color = "green"
-                } else if (diceThrowAttitude < 5) {
+                    hexagon.style.color = "lawngreen"
+                } else if (diceThrowAttitude < 5){
                     //neutral
                     hexagon.style.color = "yellow"
                 } else {
