@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class HomeController {
@@ -27,6 +29,7 @@ public class HomeController {
 
     }
 
+    //<editor-fold desc="GetAll">
     //HTTP GET (/tiles)<- URI
     @GetMapping("/tiles")
     public ResponseEntity<List<Tile>> findAllTiles() {
@@ -63,6 +66,55 @@ public class HomeController {
         List<Inventory> inventories = new ArrayList<>();
         inventoryRepo.findAll().forEach(inventories::add);
         return ResponseEntity.status(HttpStatus.OK).body(inventories);
+    }
+    //</editor-fold> // alle
+
+    @GetMapping("/tiles/{x_pos}/{y_pos}")
+    public ResponseEntity<Tile> findTileByCoords(@PathVariable("x_pos") int x,@PathVariable("y_pos") int y){
+        Optional<Tile> product = tileRepo.findTileByX_posAndY_pos(x,y);
+        if(product.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(product.get());
+        } else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @GetMapping("/player/{id}")
+    public ResponseEntity<Player> findPlayerById(@PathVariable("id") Long id){
+        Optional<Player> player = playerRepo.findById(id);
+        if (player.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(player.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
+    }
+
+    @GetMapping("/inventory/{id}")
+    public ResponseEntity<Inventory> findInventoryById(@PathVariable("id") Long id){
+        Optional<Inventory> inventory = inventoryRepo.findById(id);
+        if (inventory.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("tiletype/{id}")
+    public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
+        Optional<TileType> tileType = tileTypeRepo.findById(id);
+        if (tileType.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(tileType.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/civilisation/{id}")
+    public ResponseEntity<Civilisation> findCivilisationById(@PathVariable("id") Long id){
+        Optional<Civilisation> civilisation= civilisationRepo.findById(id);
+        if (civilisation.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(civilisation.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
 
