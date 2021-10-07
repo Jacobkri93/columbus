@@ -319,7 +319,7 @@
 <!--Dette er starten på script til hexagrid-->
 <script>
 
-    let terrainColors = ['silver', 'yellow', 'green', 'lime', 'blue', 'gray', 'saddlebrown', 'cyan']
+    let terrainColors = ['../static/images/unexplored.png', '../static/images/dessert.gif', '../static/images/monkas.gif', '../static/images/grassmoving.gif', '../static/images/waves.jpg', '../static/images/Bjerg.png', '../static/images/shrek.gif', 'Flod.png']
     let terrainTypes = ['Unexplored', 'Dessert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
 
     function loadHexagons() {
@@ -345,12 +345,12 @@
             //6 - (6) |6|
             let hexagon6 = document.getElementById("hexagon-"+(cols-1)+"-"+(rows-1))
 
-            if(hexagon1 != null) hexMap.set(hexagon1, hexagon1.style.backgroundColor)
-            if(hexagon2 != null) hexMap.set(hexagon2, hexagon2.style.backgroundColor)
-            if(hexagon3 != null) hexMap.set(hexagon3, hexagon3.style.backgroundColor)
-            if(hexagon4 != null) hexMap.set(hexagon4, hexagon4.style.backgroundColor)
-            if(hexagon5 != null) hexMap.set(hexagon5, hexagon5.style.backgroundColor)
-            if(hexagon6 != null) hexMap.set(hexagon6, hexagon6.style.backgroundColor)
+            if(hexagon1 != null) hexMap.set(hexagon1, hexagon1.style.backgroundImage)
+            if(hexagon2 != null) hexMap.set(hexagon2, hexagon2.style.backgroundImage)
+            if(hexagon3 != null) hexMap.set(hexagon3, hexagon3.style.backgroundImage)
+            if(hexagon4 != null) hexMap.set(hexagon4, hexagon4.style.backgroundImage)
+            if(hexagon5 != null) hexMap.set(hexagon5, hexagon5.style.backgroundImage)
+            if(hexagon6 != null) hexMap.set(hexagon6, hexagon6.style.backgroundImage)
         }
         //Ulige rækker
         if (rows%2 !== 0){
@@ -361,22 +361,22 @@
             let hexagon5 = document.getElementById("hexagon-"+(cols-1)+"-"+rows)
             let hexagon6 = document.getElementById("hexagon-"+cols+"-"+(rows-1))
 
-            if(hexagon1 != null) hexMap.set(hexagon1, hexagon1.style.backgroundColor)
-            if(hexagon2 != null) hexMap.set(hexagon2, hexagon2.style.backgroundColor)
-            if(hexagon3 != null) hexMap.set(hexagon3, hexagon3.style.backgroundColor)
-            if(hexagon4 != null) hexMap.set(hexagon4, hexagon4.style.backgroundColor)
-            if(hexagon5 != null) hexMap.set(hexagon5, hexagon5.style.backgroundColor)
-            if(hexagon6 != null) hexMap.set(hexagon6, hexagon6.style.backgroundColor)
+            if(hexagon1 != null) hexMap.set(hexagon1, hexagon1.style.backgroundImage)
+            if(hexagon2 != null) hexMap.set(hexagon2, hexagon2.style.backgroundImage)
+            if(hexagon3 != null) hexMap.set(hexagon3, hexagon3.style.backgroundImage)
+            if(hexagon4 != null) hexMap.set(hexagon4, hexagon4.style.backgroundImage)
+            if(hexagon5 != null) hexMap.set(hexagon5, hexagon5.style.backgroundImage)
+            if(hexagon6 != null) hexMap.set(hexagon6, hexagon6.style.backgroundImage)
         }
         let maxCount = 0;
 
         const countMap = new Map();
-        countMap.set("yellow", 0)
-        countMap.set("green", 0)
-        countMap.set("blue", 0)
-        countMap.set("lime", 0)
-        countMap.set("gray", 0)
-        countMap.set("saddlebrown", 0)
+        countMap.set('url("../static/images/dessert.png")', 0)
+        countMap.set('url("../static/images/jungle.png")', 0)
+        countMap.set('url("../static/images/waves.jpg")', 0)
+        countMap.set('url("../static/images/grass.png")', 0)
+        countMap.set('url("../static/images/Bjerg.png")', 0)
+        countMap.set('url("../static/images/Sump.png")', 0)
 
         for(let tile of hexMap.values()){
             switch (tile){
@@ -415,27 +415,28 @@
         let returnKey;
 
         switch (arr[randInt-1]){
-            case "yellow":
+            case 'url("../static/images/dessert.png")':
                 returnKey = 1;
                 break;
-            case "green":
+            case 'url("../static/images/jungle.png")':
                 returnKey = 2;
                 break;
-            case "lime":
+            case 'url("../static/images/grass.png")':
                 returnKey = 3;
                 break;
-            case "blue":
+            case 'url("../static/images/waves.jpg")':
                 returnKey = 4;
                 break;
-            case "gray":
+            case 'url("../static/images/Bjerg.png")':
                 returnKey = 5;
                 break;
-            case "saddlebrown":
+            case 'url("../static/images/Sump.png")':
                 returnKey = 6;
                 break;
             default:
                 throw new Error("You done goofed")
         }
+
 
         returnMap.set(returnKey, maxCount)
         return returnMap
@@ -473,110 +474,111 @@
             case 3:
             case 4:
                 if(sameFieldCount === 2){
-                    color=terrainColors[sameField]
+                    color= "url('"+terrainColors[sameField]+"')";
                     terrainType=terrainTypes[sameField]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[sameField]
+                    color= "url('"+terrainColors[sameField]+"')";
                     terrainType=terrainTypes[sameField]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[3]
+                    color = "url('"+terrainColors[3]+"')";
                     terrainType = terrainTypes[3]
-                    hexagon.style.backgroundColor = color
+                    debugger
+                    hexagon.style.backgroundImage = color;
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
             case 5:
             case 6:
                 if(sameFieldCount === 2){
-                    color=terrainColors[3]
+                    color= "url('"+terrainColors[3]+"')";
                     terrainType=terrainTypes[3]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[sameField]
+                    color= "url('"+terrainColors[sameField]+"')";
                     terrainType=terrainTypes[sameField]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[2]
+                    color = "url('"+terrainColors[2]+"')";
                     terrainType = terrainTypes[2]
-                    hexagon.style.backgroundColor = color
+                    hexagon.style.backgroundImage = color
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
 
             case 7:
                 if(sameFieldCount === 2){
-                    color=terrainColors[2]
+                    color= "url('"+terrainColors[2]+"')";
                     terrainType=terrainTypes[2]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[3]
+                    color= "url('"+terrainColors[3]+"')";
                     terrainType=terrainTypes[3]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[5]
+                    color = "url('"+terrainColors[5]+"')";
                     terrainType = terrainTypes[5]
-                    hexagon.style.backgroundColor = color
+                    hexagon.style.backgroundImage = color
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
 
             case 8:
                 if(sameFieldCount === 2){
-                    color=terrainColors[5]
+                    color= "url('"+terrainColors[5]+"')";
                     terrainType=terrainTypes[5]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
 
                 } else if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[2]
+                    color= "url('"+terrainColors[2]+"')";
                     terrainType=terrainTypes[2]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[2]
-                    terrainType = terrainTypes[2]
-                    hexagon.style.backgroundColor = color
+                    color = "url('"+terrainColors[1]+"')";
+                    terrainType = terrainTypes[1]
+                    hexagon.style.backgroundImage = color
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
 
             case 9:
                 if(sameFieldCount === 2){
-                    color=terrainColors[1]
+                    color= "url('"+terrainColors[1]+"')";
                     terrainType=terrainTypes[1]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[5]
+                    color= "url('"+terrainColors[5]+"')";
                     terrainType=terrainTypes[5]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[7]
+                    color = "url('"+terrainColors[7]+"')";
                     terrainType = terrainTypes[7]
-                    hexagon.style.backgroundColor = color
+                    hexagon.style.backgroundImage = color
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
 
             case 10:
                 if(sameFieldCount === 3 || sameFieldCount > 3){
-                    color=terrainColors[1]
+                    color= "url('"+terrainColors[1]+"')";
                     terrainType=terrainTypes[1]
-                    hexagon.style.backgroundColor=color
+                    hexagon.style.backgroundImage=color
                     hexagon.innerHTML=`<br><br>${terrainType}`
                 } else {
-                    color = terrainColors[6]
+                    color = "url('"+terrainColors[6]+"')";
                     terrainType = terrainTypes[6]
-                    hexagon.style.backgroundColor = color
+                    hexagon.style.backgroundImage = color
                     hexagon.innerHTML = `<br><br>${terrainType}`
                 }
                 break;
@@ -636,7 +638,7 @@
                     hexagonsHTML += `<div
                         class="hexagon"
                         id="hexagon-${col}-${row}"
-                        style="background-color: ${terrainColors[0]}"
+                        style="background-image: url(../static/images/fog3.gif); object-fit: contain; z-index: -1"
                         data-civ="none"
                         onclick="explore(${col},${row})"
                     ><br><br>${terrainTypes[0]}</div>`
@@ -646,7 +648,7 @@
                     hexagonsHTML += `<div
                     class="hexagon"
                     id="hexagon-${col+1}-${row}"
-                    style="background-color: ${terrainColors[4]}"
+                    style="background-image: url(../static/images/original.gif); object-fit: contain; z-index: -1"
                     ><br><br>${terrainTypes[4]}
                     </div>`
 
@@ -655,7 +657,7 @@
                     hexagonsHTML += `<div
                     class="hexagon"
                     id="hexagon-${col+2}-${row}"
-                    style="background-color: ${terrainColors[7]}"
+                    style="background-image: url(../static/images/Sump.png); object-fit: contain;"
                     ><br><br>${terrainTypes[7]}
                     </div>`
 
