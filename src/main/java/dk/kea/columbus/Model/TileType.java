@@ -30,7 +30,7 @@ public class TileType {
         this.movementPoints = movementPoints;
         this.idCivilisation = idCivilisation;
     }
-
+//
     public Long getIdTileType() {
         return idTileType;
     }

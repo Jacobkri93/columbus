@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="temp_exp_tiles")
-public class Temp_Exp_Tile {
+public class TempExpTile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,22 +16,22 @@ public class Temp_Exp_Tile {
     @Column
     private int idPlayer;
 
-    public Temp_Exp_Tile(){
+    public TempExpTile(){
     }
 
-    public Temp_Exp_Tile(int xPos, int yPos, int idPlayer) {
+    public TempExpTile(int xPos, int yPos, int idPlayer) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.idPlayer = idPlayer;
     }
 
-    public Temp_Exp_Tile(Long idTempExpFile, int xPos, int yPos, int idPlayer) {
+    public TempExpTile(Long idTempExpFile, int xPos, int yPos, int idPlayer) {
         this.idTempExpFile = idTempExpFile;
         this.xPos = xPos;
         this.yPos = yPos;
         this.idPlayer = idPlayer;
     }
-
+//
     public Long getIdTempExpFile() {
         return idTempExpFile;
     }

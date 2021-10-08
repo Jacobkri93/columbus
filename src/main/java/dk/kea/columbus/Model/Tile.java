@@ -64,7 +64,7 @@ public class Tile {
         this.tileAtPointSix = tileAtPointSix;
         this.tileType = tileType;
     }
-
+//
     public Long getIdTile() {
         return idTile;
     }
