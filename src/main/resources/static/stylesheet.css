@@ -28,6 +28,7 @@
     float: right;
     height: 20px;
 }
+
 .monkCount {
     float: initial;
     height: 20px;
@@ -126,7 +127,8 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-.start_btn{
+
+.start_btn {
     background-color: sienna;
     color: black;
     border: 2px solid #ffffff;
@@ -134,6 +136,7 @@ body {
 
     /*Hides button after click*/
 }
+
 .start_btn:hover {
     background-color: #4CAF50;
     color: white;
@@ -151,17 +154,10 @@ body {
     );
 }
 
-.hexButtonContainer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform: translateX(25%);
-}
-
-.hexButtonGrid{
+.hexButtonGrid {
     height: 160px;
     position: relative;
-    background-color: beige;
+    background: darkgray;
     white-space: nowrap;
     display: flex;
     --size: 50px; /* size  */
@@ -169,7 +165,14 @@ body {
     --f: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
 }
 
-.hexButton{
+.hexButtonContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateX(25%);
+}
+
+.hexButton {
     display: inline-block;
     font-size: initial;
     text-align: center;
@@ -180,25 +183,43 @@ body {
     margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
     background-color: blueviolet;
 }
+.hexButton:hover{
+    background-color: chartreuse;
+    cursor: pointer;
 
-div .hexagon{
+}
+
+div .hexagon {
     color: #ffffff;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
 
-.some-1 {
+.hexBtnRow1 {
     position: absolute;
     left: calc(var(--size) * 0.5);
     margin: 5px 0 0 0;
-
-}.some-2 {
-     position: absolute;
-     left: 0;
-     top: var(--size);
-
-}.some-3 {
-      position: absolute;
-      top: calc((var(--size) * 2) - 5px );
-      left: calc(var(--size) * 0.5);
 }
+
+
+.hexBtnRow2 {
+    position: absolute;
+    left: 0;
+    top: var(--size);
+
+}
+
+.hexBtnRow3 {
+    position: absolute;
+    top: calc((var(--size) * 2) - 5px);
+    left: calc(var(--size) * 0.5);
+}
+
+ .playerTokenClass {
+     z-index: 7;
+     width: 50px;
+     height: 50px;
+     background-image: none ;
+     position: absolute;
+     background-size: contain;
+ }

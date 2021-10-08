@@ -75,7 +75,7 @@
         </table>
 
         <div id="weightLimit">Weight 0/40</div>
-        <button class="start_btn" onclick="createPlayerOnBoard()">START GAME</button>
+        <!--<button class="start_btn" onclick="createPlayerOnBoard()">START GAME</button>-->
 
         <div class="hexButtonGrid">
             <div id="HexButtonGrid" class="hexButtonContainer"></div>
@@ -258,7 +258,6 @@
         player.bp = 12;
 
         cache.setPlayer(player)
-        movePlayer(16, 4)
     }
 
 
@@ -305,6 +304,7 @@
         let player = cache.getPlayer()
         player.x_pos = col
         player.y_pos = row
+        if(!isTileExplored(col, row)) explore(col, row)
         showPlayerOnTile(col, row)
     }
 
@@ -312,16 +312,18 @@
         const player = cache.getPlayer()
         const currentX = player.x_pos
         const currentY = player.y_pos
-        const newX = currentX - (1 - (currentX % 2))
+        const newX = currentX - (1 - (currentY % 2))
         const newY = currentY - 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, newY)
     }
     function movePlayerTopRight(){
         const player = cache.getPlayer()
         const currentX = player.x_pos
         const currentY = player.y_pos
-        const newX = currentX + (currentX % 2)
+        const newX = currentX + (currentY % 2)
         const newY = currentY - 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, newY)
     }
     function movePlayerLeft(){
@@ -329,6 +331,7 @@
         const currentX = player.x_pos
         const currentY = player.y_pos
         const newX = currentX - 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, currentY)
     }
     function movePlayerRight(){
@@ -336,29 +339,39 @@
         const currentX = player.x_pos
         const currentY = player.y_pos
         const newX = currentX + 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, currentY)
     }
     function movePlayerBottomLeft(){
         const player = cache.getPlayer()
         const currentX = player.x_pos
         const currentY = player.y_pos
-        const newX = currentX - (1 - currentX % 2)
+        const newX = currentX - (1 - currentY % 2)
         const newY = currentY + 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, newY)
     }
     function movePlayerBottomRight(){
         const player = cache.getPlayer()
         const currentX = player.x_pos
         const currentY = player.y_pos
-        const newX = currentX + (currentX % 2)
+        const newX = currentX + (currentY % 2)
         const newY = currentY + 1
+        removePlayerFromTile(currentX,currentY)
         movePlayer(newX, newY)
     }
 
 
     function showPlayerOnTile(col, row) {
-        let nodeId = "hexagon-" + col + "-" + row
-        //TODO: Show player on nodeId tile
+        let nodeId = "playerDiv-" + col + "-" + row
+        const tile = document.getElementById(nodeId)
+        tile.style.backgroundImage = 'url("../static/images/crown.png")'
+    }
+
+    function removePlayerFromTile(col, row) {
+        let nodeId = "playerDiv-" + col + "-" + row
+        const tile = document.getElementById(nodeId)
+        tile.style.backgroundImage = "none"
     }
 
     function tryConvert(col, row) {
@@ -373,7 +386,16 @@
         }
     }
 
+    function isTileExplored(col, row){
+        const nodeId = createHexagonId(col, row)
+        const node = document.getElementById(nodeId)
+        return node.getAttribute("data-explored") !== "no";
 
+    }
+
+    function createHexagonId(col, row){
+        return "hexagon-" + col + "-" + row
+    }
 
     function loadHexagons() {
         document.getElementById('gameboard').innerHTML = generateHexagonsHTML(16, 12)
@@ -532,17 +554,29 @@
                     color = "url('" + terrainColors[sameField] + "')";
                     terrainType = terrainTypes[sameField]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else if (sameFieldCount === 3 || sameFieldCount > 3) {
                     color = "url('" + terrainColors[sameField] + "')";
                     terrainType = terrainTypes[sameField]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[3] + "')";
                     terrainType = terrainTypes[3]
                     hexagon.style.backgroundImage = color;
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
             case 5:
@@ -551,17 +585,29 @@
                     color = "url('" + terrainColors[3] + "')";
                     terrainType = terrainTypes[3]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else if (sameFieldCount === 3 || sameFieldCount > 3) {
                     color = "url('" + terrainColors[sameField] + "')";
                     terrainType = terrainTypes[sameField]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[2] + "')";
                     terrainType = terrainTypes[2]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
 
@@ -570,17 +616,29 @@
                     color = "url('" + terrainColors[2] + "')";
                     terrainType = terrainTypes[2]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else if (sameFieldCount === 3 || sameFieldCount > 3) {
                     color = "url('" + terrainColors[3] + "')";
                     terrainType = terrainTypes[3]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[5] + "')";
                     terrainType = terrainTypes[5]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
 
@@ -589,18 +647,30 @@
                     color = "url('" + terrainColors[5] + "')";
                     terrainType = terrainTypes[5]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
 
                 } else if (sameFieldCount === 3 || sameFieldCount > 3) {
                     color = "url('" + terrainColors[2] + "')";
                     terrainType = terrainTypes[2]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[1] + "')";
                     terrainType = terrainTypes[1]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
 
@@ -609,17 +679,29 @@
                     color = "url('" + terrainColors[1] + "')";
                     terrainType = terrainTypes[1]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else if (sameFieldCount === 3 || sameFieldCount > 3) {
                     color = "url('" + terrainColors[5] + "')";
                     terrainType = terrainTypes[5]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[7] + "')";
                     terrainType = terrainTypes[7]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
 
@@ -628,12 +710,20 @@
                     color = "url('" + terrainColors[1] + "')";
                     terrainType = terrainTypes[1]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 } else {
                     color = "url('" + terrainColors[6] + "')";
                     terrainType = terrainTypes[6]
                     hexagon.style.backgroundImage = color
-                    hexagon.innerHTML = `<br><br>${terrainType}`
+                    hexagon.innerHTML = `<br><br>${terrainType}
+                    <div
+                    id="playerDiv-${cols}-${rows}"
+                    class="playerTokenClass"
+                    ></div>`
                 }
                 break;
 
@@ -680,6 +770,7 @@
             }
 
         }
+        hexagon.setAttribute("data-explored", "yes")
         hexagon.onclick = undefined
     }
 
@@ -690,12 +781,17 @@
             for (let col = 0; col < cols - (row % 2); col++) {
                 if (row != 0 || row != rows - 1 || col != 0) {
                     hexagonsHTML += `<div
-                        class="hexagon"
-                        id="hexagon-${col}-${row}"
-                        style="background-image: url(../static/images/fog3.gif); object-fit: contain; z-index: -1"
-                        data-civ="none"
-                        onclick="explore(${col},${row})"
-                    ><br><br>${terrainTypes[0]}</div>`
+                    class="hexagon"
+                    id="hexagon-${col}-${row}"
+                    style="background-image: url(../static/images/fog3.gif); object-fit: contain; z-index: -1"
+                    data-civ="none"
+                    data-explored="no"
+                    onclick="explore(${col},${row})"
+                    ><br><br>${terrainTypes[0]}
+                    <div
+                    id="playerDiv-${col}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
                 }
                 if (col == cols - (row % 2) - 1) {
                     hexagonsHTML += `<div
@@ -703,7 +799,10 @@
                     id="hexagon-${col + 1}-${row}"
                     style="background-image: url(../static/images/original.gif); object-fit: contain; z-index: -1"
                     ><br><br>${terrainTypes[4]}
-                    </div>`
+                    <div
+                    id="playerDiv-${col + 1}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
 
                 }
                 if (col == cols - (row % 2) - 1)
@@ -712,7 +811,10 @@
                     id="hexagon-${col + 2}-${row}"
                     style="background-image: url(../static/images/coast2.gif); object-fit: contain;"
                     ><br><br>${terrainTypes[7]}
-                    </div>`
+                    <div
+                    id="playerDiv-${col + 2}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
 
             }
 
@@ -727,11 +829,11 @@
     function createMoveButtons() {
         let hexagonsHTML = ""
         for (let row = 0; row < 3; row++) {
-            hexagonsHTML += `<div class="some-${row + 1}">`
+            hexagonsHTML += `<div class="hexBtnRow${row + 1}">`
             for (let col = 0; col < 2 + (row % 2); col++) {
                 hexagonsHTML += `<div
-                    class="hexButton"
-                    id="hexBtnId-${col}-${row}"
+                class="hexButton"
+                id="hexBtnId-${col}-${row}"
                 ></div>`
             }
             hexagonsHTML += `</div>`
