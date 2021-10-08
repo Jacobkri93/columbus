@@ -64,7 +64,7 @@ section::after {
 }
 
 body {
-    background-color: whitesmoke;
+    background-image: url("images/space.png");
     /*width: 150%;*/
 }
 
@@ -151,7 +151,6 @@ body {
 .hexButtonGrid {
     height: 160px;
     position: relative;
-    background: darkgray;
     white-space: nowrap;
     display: flex;
     --size: 50px; /* size  */
