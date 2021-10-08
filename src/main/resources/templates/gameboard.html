@@ -89,8 +89,8 @@
 <!--Sidebar / HUD-->
 <script>
 
-    let terrainColors = ['../static/images/unexplored.png', '../static/images/dessert.gif', '../static/images/monkas.gif', '../static/images/grassmoving.gif', '../static/images/waves.jpg', '../static/images/Bjerg.png', '../static/images/shrek.gif', 'Flod.png']
-    let terrainTypes = ['Unexplored', 'Dessert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
+    let terrainColors = ['../static/images/unexplored.png', '../static/images/desert-sand3.gif', '../static/images/monkas.gif', '../static/images/grassmoving.gif', '../static/images/original.gif', '../static/images/mountain4.gif', '../static/images/shrek.gif', '../static/images/coast2.gif']
+    let terrainTypes = ['Unexplored', 'Desert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
 
     function makeLocalCache() {
         let soldierCount = 0
@@ -426,12 +426,12 @@
         let maxCount = 0;
 
         const countMap = new Map();
-        countMap.set('url("../static/images/dessert.png")', 0)
-        countMap.set('url("../static/images/jungle.png")', 0)
-        countMap.set('url("../static/images/waves.jpg")', 0)
-        countMap.set('url("../static/images/grass.png")', 0)
-        countMap.set('url("../static/images/Bjerg.png")', 0)
-        countMap.set('url("../static/images/Sump.png")', 0)
+        countMap.set('url("../static/images/desert-sand3.gif")', 0)
+        countMap.set('url("../static/images/monkas.gif")', 0)
+        countMap.set('url("../static/images/original.gif")', 0)
+        countMap.set('url("../static/images/grassmoving.gif")', 0)
+        countMap.set('url("../static/images/mountain4.gif")', 0)
+        countMap.set('url("../static/images/shrek.gif")', 0)
 
         for (let tile of hexMap.values()) {
             switch (tile) {
@@ -470,22 +470,22 @@
         let returnKey;
 
         switch (arr[randInt - 1]) {
-            case 'url("../static/images/dessert.png")':
+            case 'url("../static/images/desert-sand3.gif")':
                 returnKey = 1;
                 break;
-            case 'url("../static/images/jungle.png")':
+            case 'url("../static/images/monkas.gif")':
                 returnKey = 2;
                 break;
-            case 'url("../static/images/grass.png")':
+            case 'url("../static/images/grassmoving.gif")':
                 returnKey = 3;
                 break;
-            case 'url("../static/images/waves.jpg")':
+            case 'url("../static/images/original.gif")':
                 returnKey = 4;
                 break;
-            case 'url("../static/images/Bjerg.png")':
+            case 'url("../static/images/mountain4.gif")':
                 returnKey = 5;
                 break;
-            case 'url("../static/images/Sump.png")':
+            case 'url("../static/images/shrek.gif")':
                 returnKey = 6;
                 break;
             default:
@@ -710,7 +710,7 @@
                     hexagonsHTML += `<div
                     class="hexagon"
                     id="hexagon-${col + 2}-${row}"
-                    style="background-image: url(../static/images/Sump.png); object-fit: contain;"
+                    style="background-image: url(../static/images/coast2.gif); object-fit: contain;"
                     ><br><br>${terrainTypes[7]}
                     </div>`
 

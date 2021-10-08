@@ -80,7 +80,7 @@ body {
 
 
 .container {
-    font-size: 0; /*disable white space between inline block element */
+    font-size: 1px; /*disable white space between inline block element */
 }
 
 .hexagon {
