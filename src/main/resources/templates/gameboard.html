@@ -690,12 +690,16 @@
             for (let col = 0; col < cols - (row % 2); col++) {
                 if (row != 0 || row != rows - 1 || col != 0) {
                     hexagonsHTML += `<div
-                        class="hexagon"
-                        id="hexagon-${col}-${row}"
-                        style="background-image: url(../static/images/fog3.gif); object-fit: contain; z-index: -1"
-                        data-civ="none"
-                        onclick="explore(${col},${row})"
-                    ><br><br>${terrainTypes[0]}</div>`
+                    class="hexagon"
+                    id="hexagon-${col}-${row}"
+                    style="background-image: url(../static/images/fog3.gif); object-fit: contain; z-index: -1"
+                    data-civ="none"
+                    onclick="explore(${col},${row})"
+                    ><br><br>${terrainTypes[0]}
+                    <div
+                    id="playerDiv-${col}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
                 }
                 if (col == cols - (row % 2) - 1) {
                     hexagonsHTML += `<div
@@ -703,7 +707,10 @@
                     id="hexagon-${col + 1}-${row}"
                     style="background-image: url(../static/images/original.gif); object-fit: contain; z-index: -1"
                     ><br><br>${terrainTypes[4]}
-                    </div>`
+                    <div
+                    id="playerDiv-${col}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
 
                 }
                 if (col == cols - (row % 2) - 1)
@@ -712,7 +719,10 @@
                     id="hexagon-${col + 2}-${row}"
                     style="background-image: url(../static/images/coast2.gif); object-fit: contain;"
                     ><br><br>${terrainTypes[7]}
-                    </div>`
+                    <div
+                    id="playerDiv-${col}-${row}"
+                    class="playerTokenClass"
+                    ></div></div>`
 
             }
 
@@ -727,11 +737,11 @@
     function createMoveButtons() {
         let hexagonsHTML = ""
         for (let row = 0; row < 3; row++) {
-            hexagonsHTML += `<div class="some-${row + 1}">`
+            hexagonsHTML += `<div class="hexBtnRow${row + 1}">`
             for (let col = 0; col < 2 + (row % 2); col++) {
                 hexagonsHTML += `<div
-                    class="hexButton"
-                    id="hexBtnId-${col}-${row}"
+                class="hexButton"
+                id="hexBtnId-${col}-${row}"
                 ></div>`
             }
             hexagonsHTML += `</div>`
