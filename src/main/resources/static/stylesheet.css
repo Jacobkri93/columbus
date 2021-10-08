@@ -225,3 +225,7 @@ div .hexagon {
     position: absolute;
     background-size: contain;
 }
+
+.moveBtnTitle {
+    text-align: center;
+}
