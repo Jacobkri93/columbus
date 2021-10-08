@@ -16,22 +16,22 @@ public class Tile {
     private int tileYPos;
 
     @Column(nullable = true, name = "tile_at_point_one") // idk
-    private boolean tileAtPointOne;
+    private String tileAtPointOne;
 
     @Column(nullable = true, name = "tile_at_point_two") // idk
-    private boolean tileAtPointTwo;
+    private String tileAtPointTwo;
 
     @Column(nullable = true, name = "tile_at_point_three") // idk
-    private boolean tileAtPointThree;
+    private String tileAtPointThree;
 
     @Column(nullable = true, name = "tile_at_point_four") // idk
-    private boolean tileAtPointFour;
+    private String tileAtPointFour;
 
     @Column(nullable = true, name = "tile_at_point_five") // idk
-    private boolean tileAtPointFive;
+    private String tileAtPointFive;
 
     @Column(nullable = true, name = "tile_at_point_six") // idk
-    private boolean tileAtPointSix;
+    private String tileAtPointSix;
 
     @Column(nullable = false, name = "id_tile_type") // idk
     private int idTileType;
@@ -40,7 +40,7 @@ public class Tile {
 
     }
 
-    public Tile(int tileXPos, int tileYPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int idTileType) {
+    public Tile(int tileXPos, int tileYPos, String tileAtPointOne, String tileAtPointTwo, String tileAtPointThree, String tileAtPointFour, String tileAtPointFive, String tileAtPointSix, int idTileType) {
         this.tileXPos = tileXPos;
         this.tileYPos = tileYPos;
         this.tileAtPointOne = tileAtPointOne;
@@ -52,7 +52,7 @@ public class Tile {
         this.idTileType = idTileType;
     }
 
-    public Tile(Long idTile, int tileXPos, int tileYPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int idTileType) {
+    public Tile(Long idTile, int tileXPos, int tileYPos, String tileAtPointOne, String tileAtPointTwo, String tileAtPointThree, String tileAtPointFour, String tileAtPointFive, String tileAtPointSix, int idTileType) {
         this.idTile = idTile;
         this.tileXPos = tileXPos;
         this.tileYPos = tileYPos;
@@ -89,51 +89,51 @@ public class Tile {
         this.tileYPos = tileYPos;
     }
 
-    public boolean isTileAtPointOne() {
+    public String getTileAtPointOne() {
         return tileAtPointOne;
     }
 
-    public void setTileAtPointOne(boolean tileAtPointOne) {
+    public void setTileAtPointOne(String tileAtPointOne) {
         this.tileAtPointOne = tileAtPointOne;
     }
 
-    public boolean isTileAtPointTwo() {
+    public String getTileAtPointTwo() {
         return tileAtPointTwo;
     }
 
-    public void setTileAtPointTwo(boolean tileAtPointTwo) {
+    public void setTileAtPointTwo(String tileAtPointTwo) {
         this.tileAtPointTwo = tileAtPointTwo;
     }
 
-    public boolean isTileAtPointThree() {
+    public String getTileAtPointThree() {
         return tileAtPointThree;
     }
 
-    public void setTileAtPointThree(boolean tileAtPointThree) {
+    public void setTileAtPointThree(String tileAtPointThree) {
         this.tileAtPointThree = tileAtPointThree;
     }
 
-    public boolean isTileAtPointFour() {
+    public String getTileAtPointFour() {
         return tileAtPointFour;
     }
 
-    public void setTileAtPointFour(boolean tileAtPointFour) {
+    public void setTileAtPointFour(String tileAtPointFour) {
         this.tileAtPointFour = tileAtPointFour;
     }
 
-    public boolean isTileAtPointFive() {
+    public String getTileAtPointFive() {
         return tileAtPointFive;
     }
 
-    public void setTileAtPointFive(boolean tileAtPointFive) {
+    public void setTileAtPointFive(String tileAtPointFive) {
         this.tileAtPointFive = tileAtPointFive;
     }
 
-    public boolean isTileAtPointSix() {
+    public String getTileAtPointSix() {
         return tileAtPointSix;
     }
 
-    public void setTileAtPointSix(boolean tileAtPointSix) {
+    public void setTileAtPointSix(String tileAtPointSix) {
         this.tileAtPointSix = tileAtPointSix;
     }
 

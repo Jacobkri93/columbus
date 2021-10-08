@@ -41,6 +41,19 @@ public class Player {
 
     public Player (){}
 
+    public Player(int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
+        this.amountOfCarriers = amountOfCarriers;
+        this.amountOfSoldiers = amountOfSoldiers;
+        this.amountOfMonks = amountOfMonks;
+        this.currency = currency;
+        this.maxWeight = maxWeight;
+        this.remainingBp = remainingBp;
+        this.shipXPos = shipXPos;
+        this.shipYPos = shipYPos;
+        this.playerXPos = playerXPos;
+        this.playerYPos = playerYPos;
+    }
+
     public Player(int idInventory, int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
         this.idInventory = idInventory;
         this.amountOfCarriers = amountOfCarriers;

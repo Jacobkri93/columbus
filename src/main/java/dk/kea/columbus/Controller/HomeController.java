@@ -68,77 +68,9 @@ public class HomeController {
     }
     //</editor-fold> // alle
 
-/*
-    @GetMapping("/tiles/{x_pos}/{y_pos}")
-    public ResponseEntity<Tile> findTileByCoords(@PathVariable("x_pos") int x,
-                                                 @PathVariable("y_pos") int y){
-        Optional<Tile> product = tileRepo.findTileByX_posAndY_pos(x,y);
-        if(product.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(product.get());
-        } else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    }
 
- */
-
-    @GetMapping("/players/{id}")
-    public ResponseEntity<Player> findPlayerById(@PathVariable("id") Long id){
-        Optional<Player> player = playerRepo.findById(id);
-        if (player.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(player.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
-    }
-
-    /*
-    @GetMapping("/players/{x_pos}/{y_pos}")
-    public ResponseEntity<Player> findPlayerByCoord(@PathVariable("x_pos") int x,
-                                                    @PathVariable("y_pos") int y){
-
-        Optional<Player> player = playerRepo.findPlayerByPlayer_x_posAndPlayer_y_pos(x,y);
-        if (player.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(player.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-     */
-
-
-    @GetMapping("/inventories/{id}") //inventory id
-    public ResponseEntity<Inventory> findInventoryById(@PathVariable("id") Long id){
-        Optional<Inventory> inventory = inventoryRepo.findById(id);
-        if (inventory.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-    /*
-    @GetMapping ("/inventories/{id_player}") //player Id
-    public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
-        Optional<Inventory> inventory = inventoryRepo.findInventoryById_player(id);
-        if (inventory.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
-     */
-
-    @GetMapping("tiletypes/{id}")
-    public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
-        Optional<TileType> tileType = tileTypeRepo.findById(id);
-        if (tileType.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(tileType.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
+    //<editor-fold desc="Civilisation">
+    //HTTP GET (/civilisation)<- URI
     @GetMapping("/civilisation/{id}")
     public ResponseEntity<Civilisation> findCivilisationById(@PathVariable("id") Long id){
         Optional<Civilisation> civilisation= civilisationRepo.findById(id);
@@ -160,18 +92,47 @@ public class HomeController {
         }
     }
 
-    //Find Player by x and y pos
-    @GetMapping("/tiles/{xPos}/{yPos}")
-    public ResponseEntity<Tile> findTilesByCoord(@PathVariable("xPos") int x,
-                                                 @PathVariable("yPos") int y){
+    //</editor-fold> // alle
 
-        Optional<Tile> tile = tileRepo.findTileByTileXPosAndTileYPos(x,y);
-        if (tile.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(tile.get());
+
+    //<editor-fold desc="Inventories">
+    //HTTP GET (/inventory)<- URI
+    @GetMapping("/inventories/{id}") //inventory id
+    public ResponseEntity<Inventory> findInventoryById(@PathVariable("id") Long id){
+        Optional<Inventory> inventory = inventoryRepo.findById(id);
+        if (inventory.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+
+    @GetMapping ("/inventorybyplayerid/{id_player}") //player Id
+    public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
+        Optional<Inventory> inventory = inventoryRepo.findInventoryByIdPlayer(id);
+        if (inventory.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(inventory.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+
+    //</editor-fold> // alle
+
+
+    //<editor-fold desc="Players">
+    //HTTP GET (/player)<- URI
+    @GetMapping("/players/{id}")
+    public ResponseEntity<Player> findPlayerById(@PathVariable("id") Long id){
+        Optional<Player> player = playerRepo.findById(id);
+        if (player.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(player.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
+    }
+
 
     //Find Player by x and y pos
     @GetMapping("/players/{xPos}/{yPos}")
@@ -188,13 +149,12 @@ public class HomeController {
 
     @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping("/addPlayer")
-    public ResponseEntity<Player> addPlayer() {
-        Player player1 = new Player(5,10,10,2,20,
-                200,12,5,3,3,2);
-        playerRepo.save(player1);
+    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
+        Player player1 = playerRepo.save(player);
+
 
         //location header
-        String location = "gameboard.html";
+        String location = "/players/"+player1.getIdPlayer();
 
         //HTTPStatus Created 201
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -203,23 +163,66 @@ public class HomeController {
 
     }
 
+    //</editor-fold> // alle
 
-    //HTTP POST Request
-    @PostMapping(value="/columbus")
-    public ResponseEntity<Tile> createTile(@RequestBody Tile tile){
 
-        //hvis id er sat, så skal den ikke udføre det.
-        if (tile.getIdTile()!=null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    //<editor-fold desc="Tiles">
+    //HTTP GET (/tiles)<- URI
+
+    @GetMapping("/tiles/{id}")
+    public ResponseEntity<Tile> findTileById(@PathVariable("id") Long id){
+        Optional<Tile> tile= tileRepo.findById(id);
+        if (tile.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(tile.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+    }
 
-        Tile myTile = tileRepo.save(tile);
+    //Find Player by x and y pos
+    @GetMapping("/tiles/{xPos}/{yPos}")
+    public ResponseEntity<Tile> findTilesByCoord(@PathVariable("xPos") int x,
+                                                 @PathVariable("yPos") int y){
 
+        Optional<Tile> tile = tileRepo.findTileByTileXPosAndTileYPos(x,y);
+        if (tile.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(tile.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @CrossOrigin(origins = "*", exposedHeaders = "Location")
+    @PostMapping("/addTile")
+    public ResponseEntity<Tile> addTile(@RequestBody Tile tile) {
+        Tile tile1 = tileRepo.save(tile);
+
+
+        //location header
+        String location = "/tiles/"+tile1.getIdTile();
+
+        //HTTPStatus Created 201
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(myTile);
-
+                .header("Location",location)
+                .body(tile1);
 
     }
 
+    //</editor-fold> // alle
+
+
+    //<editor-fold desc="TileTypes">
+    //HTTP GET (/tiletypes)<- URI
+    @GetMapping("tiletypes/{id}")
+    public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
+        Optional<TileType> tileType = tileTypeRepo.findById(id);
+        if (tileType.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(tileType.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    //</editor-fold> // alle
 
 }
