@@ -248,20 +248,14 @@ div .hexagon {
     font-size: 28px;
     font-weight: bold;
 }
-modal_table{
+modal_table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
     position: absolute;
     top: 30%;
     left: 50%;
-
-duration_h1{
-    display: inline
 }
-}
-/***********/
-
 
 
 .playerTokenClass {
