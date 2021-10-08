@@ -8,58 +8,58 @@ public class TileType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_tile_type;
+    private Long idTileType;
     @Column
-    private String tile_type_name;
+    private String tileTypeName;
     @Column
-    private int movement_points;
+    private int movementPoints;
     @Column
-    private int id_civilisation;
+    private int idCivilisation;
 
     public TileType(){}
 
-    public TileType(Long id_tile_type, String tile_type_name, int movement_points, int id_civilisation) {
-        this.id_tile_type = id_tile_type;
-        this.tile_type_name = tile_type_name;
-        this.movement_points = movement_points;
-        this.id_civilisation = id_civilisation;
+    public TileType(Long idTileType, String tileTypeName, int movementPoints, int idCivilisation) {
+        this.idTileType = idTileType;
+        this.tileTypeName = tileTypeName;
+        this.movementPoints = movementPoints;
+        this.idCivilisation = idCivilisation;
     }
 
-    public TileType(String tile_type_name, int movement_points, int id_civilisation) {
-        this.tile_type_name = tile_type_name;
-        this.movement_points = movement_points;
-        this.id_civilisation = id_civilisation;
+    public TileType(String tileTypeName, int movementPoints, int idCivilisation) {
+        this.tileTypeName = tileTypeName;
+        this.movementPoints = movementPoints;
+        this.idCivilisation = idCivilisation;
     }
 
-    public Long getId_tile_type() {
-        return id_tile_type;
+    public Long getIdTileType() {
+        return idTileType;
     }
 
-    public void setId_tile_type(Long id) {
-        this.id_tile_type = id;
+    public void setIdTileType(Long idTileType) {
+        this.idTileType = idTileType;
     }
 
-    public String getTile_type_name() {
-        return tile_type_name;
+    public String getTileTypeName() {
+        return tileTypeName;
     }
 
-    public void setTile_type_name(String tile_type_name) {
-        this.tile_type_name = tile_type_name;
+    public void setTileTypeName(String tileTypeName) {
+        this.tileTypeName = tileTypeName;
     }
 
-    public int getMovement_points() {
-        return movement_points;
+    public int getMovementPoints() {
+        return movementPoints;
     }
 
-    public void setMovement_points(int movement_points) {
-        this.movement_points = movement_points;
+    public void setMovementPoints(int movementPoints) {
+        this.movementPoints = movementPoints;
     }
 
-    public int getId_civilisation() {
-        return id_civilisation;
+    public int getIdCivilisation() {
+        return idCivilisation;
     }
 
-    public void setId_civilisation(int id_civilisation) {
-        this.id_civilisation = id_civilisation;
+    public void setIdCivilisation(int idCivilisation) {
+        this.idCivilisation = idCivilisation;
     }
 }

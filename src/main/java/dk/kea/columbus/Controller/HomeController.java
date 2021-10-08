@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -69,7 +68,7 @@ public class HomeController {
     }
     //</editor-fold> // alle
 
-
+/*
     @GetMapping("/tiles/{x_pos}/{y_pos}")
     public ResponseEntity<Tile> findTileByCoords(@PathVariable("x_pos") int x,
                                                  @PathVariable("y_pos") int y){
@@ -80,6 +79,8 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+ */
+
     @GetMapping("/players/{id}")
     public ResponseEntity<Player> findPlayerById(@PathVariable("id") Long id){
         Optional<Player> player = playerRepo.findById(id);
@@ -89,6 +90,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}
     }
 
+    /*
     @GetMapping("/players/{x_pos}/{y_pos}")
     public ResponseEntity<Player> findPlayerByCoord(@PathVariable("x_pos") int x,
                                                     @PathVariable("y_pos") int y){
@@ -101,6 +103,8 @@ public class HomeController {
         }
     }
 
+     */
+
 
     @GetMapping("/inventories/{id}") //inventory id
     public ResponseEntity<Inventory> findInventoryById(@PathVariable("id") Long id){
@@ -112,6 +116,7 @@ public class HomeController {
         }
     }
 
+    /*
     @GetMapping ("/inventories/{id_player}") //player Id
     public ResponseEntity<Inventory> findInventoryByPlayerId(@PathVariable("id_player")int id){
         Optional<Inventory> inventory = inventoryRepo.findInventoryById_player(id);
@@ -122,6 +127,8 @@ public class HomeController {
         }
     }
 
+     */
+
     @GetMapping("tiletypes/{id}")
     public ResponseEntity<TileType> findTileTypeById(@PathVariable("id") Long id){
         Optional<TileType> tileType = tileTypeRepo.findById(id);
@@ -131,7 +138,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
+/*
     @GetMapping("/civilisation/{id}")
     public ResponseEntity<Civilisation> findCivilisationById(@PathVariable("id") Long id){
         Optional<Civilisation> civilisation= civilisationRepo.findById(id);
@@ -153,11 +160,8 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/temp_exp_tile")
 
-
-
-
+ */
 
     @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping("/addPlayer")
@@ -182,7 +186,7 @@ public class HomeController {
     public ResponseEntity<Tile> createTile(@RequestBody Tile tile){
 
         //hvis id er sat, så skal den ikke udføre det.
-        if (tile.getId_tile()!=null){
+        if (tile.getIdTile()!=null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 

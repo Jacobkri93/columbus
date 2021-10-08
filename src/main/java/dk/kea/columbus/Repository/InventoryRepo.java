@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @RestController
 public interface InventoryRepo extends JpaRepository<Inventory,Long> {
-    public Optional<Inventory> findInventoryById_player(int id);
+
+   // public Optional<Inventory> findInventoryById(int id_player);
 
 }

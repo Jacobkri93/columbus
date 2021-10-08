@@ -8,59 +8,59 @@ public class Temp_Exp_Tile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_temp_exp_tiles;
+    private Long idTempExpFile;
     @Column
-    private int x_pos;
+    private int xPos;
     @Column
-    private int y_pos;
+    private int yPos;
     @Column
-    private int id_player;
+    private int idPlayer;
 
     public Temp_Exp_Tile(){
     }
 
-    public Temp_Exp_Tile(Long id_temp_exp_tiles, int x_pos, int y_pos, int id_player) {
-        this.id_temp_exp_tiles = id_temp_exp_tiles;
-        this.x_pos = x_pos;
-        this.y_pos = y_pos;
-        this.id_player = id_player;
+    public Temp_Exp_Tile(int xPos, int yPos, int idPlayer) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.idPlayer = idPlayer;
     }
 
-    public Temp_Exp_Tile(int x_pos, int y_pos, int id_player) {
-        this.x_pos = x_pos;
-        this.y_pos = y_pos;
-        this.id_player = id_player;
+    public Temp_Exp_Tile(Long idTempExpFile, int xPos, int yPos, int idPlayer) {
+        this.idTempExpFile = idTempExpFile;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.idPlayer = idPlayer;
     }
 
-    public Long getId_temp_exp_tiles() {
-        return id_temp_exp_tiles;
+    public Long getIdTempExpFile() {
+        return idTempExpFile;
     }
 
-    public void setId_temp_exp_tiles(Long id_temp_exp_tiles) {
-        this.id_temp_exp_tiles = id_temp_exp_tiles;
+    public void setIdTempExpFile(Long idTempExpFile) {
+        this.idTempExpFile = idTempExpFile;
     }
 
-    public int getX_pos() {
-        return x_pos;
+    public int getxPos() {
+        return xPos;
     }
 
-    public void setX_pos(int x_pos) {
-        this.x_pos = x_pos;
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
     }
 
-    public int getY_pos() {
-        return y_pos;
+    public int getyPos() {
+        return yPos;
     }
 
-    public void setY_pos(int y_pos) {
-        this.y_pos = y_pos;
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
     }
 
-    public int getId_player() {
-        return id_player;
+    public int getIdPlayer() {
+        return idPlayer;
     }
 
-    public void setId_player(int id_player) {
-        this.id_player = id_player;
+    public void setIdPlayer(int idPlayer) {
+        this.idPlayer = idPlayer;
     }
 }

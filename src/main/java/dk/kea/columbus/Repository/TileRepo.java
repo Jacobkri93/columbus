@@ -9,7 +9,7 @@ import java.util.Optional;
 @RestController
 public interface TileRepo extends JpaRepository<Tile,Long> {
 
-    public Optional<Tile> findTileByX_posAndY_pos (int x, int y);
+    //public Optional<Tile> findTileByX_posAndY_pos (int x, int y);
 
 }
 
