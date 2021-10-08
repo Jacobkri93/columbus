@@ -18,33 +18,33 @@ public class Civilisation {
     private String attitudePlayerThree;
     @Column
     private String attitudePlayerFour;
-    @Column
-    private int xPos;
-    @Column
-    private int yPos;
+    @Column(name = "x_pos")
+    private int civXPos;
+    @Column(name = "y_pos")
+    private int civYPos;
 
     public Civilisation(){}
 
 
-    public Civilisation(Long idCivilisation, String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int xPos, int yPos) {
+    public Civilisation(Long idCivilisation, String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int civXPos, int civYPos) {
         this.idCivilisation = idCivilisation;
         this.civilisationName = civilisationName;
         this.attitudePlayerOne = attitudePlayerOne;
         this.attitudePlayerTwo = attitudePlayerTwo;
         this.attitudePlayerThree = attitudePlayerThree;
         this.attitudePlayerFour = attitudePlayerFour;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.civXPos = civXPos;
+        this.civYPos = civYPos;
     }
 
-    public Civilisation(String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int xPos, int yPos) {
+    public Civilisation(String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int civXPos, int civYPos) {
         this.civilisationName = civilisationName;
         this.attitudePlayerOne = attitudePlayerOne;
         this.attitudePlayerTwo = attitudePlayerTwo;
         this.attitudePlayerThree = attitudePlayerThree;
         this.attitudePlayerFour = attitudePlayerFour;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.civXPos = civXPos;
+        this.civYPos = civYPos;
     }
 
     public Long getIdCivilisation() {
@@ -95,19 +95,19 @@ public class Civilisation {
         this.attitudePlayerFour = attitudePlayerFour;
     }
 
-    public int getxPos() {
-        return xPos;
+    public int getCivXPos() {
+        return civXPos;
     }
 
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
+    public void setCivXPos(int civXPos) {
+        this.civXPos = civXPos;
     }
 
-    public int getyPos() {
-        return yPos;
+    public int getCivYPos() {
+        return civYPos;
     }
 
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
+    public void setCivYPos(int civYPos) {
+        this.civYPos = civYPos;
     }
 }

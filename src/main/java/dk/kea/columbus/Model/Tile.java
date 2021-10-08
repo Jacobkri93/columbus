@@ -9,62 +9,62 @@ public class Tile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTile;
 
-    @Column(nullable = true) // idk
-    private int xPos;
+    @Column(name = "x_pos") // idk
+    private int tileXPos;
 
-    @Column(nullable = true) // idk
-    private int yPos;
+    @Column(name = "y_pos") // idk
+    private int tileYPos;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_one") // idk
     private boolean tileAtPointOne;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_two") // idk
     private boolean tileAtPointTwo;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_three") // idk
     private boolean tileAtPointThree;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_four") // idk
     private boolean tileAtPointFour;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_five") // idk
     private boolean tileAtPointFive;
 
-    @Column(nullable = true) // idk
+    @Column(nullable = true, name = "tile_at_point_six") // idk
     private boolean tileAtPointSix;
 
-    @Column(nullable = false) // idk
-    private int tileType;
+    @Column(nullable = false, name = "id_tile_type") // idk
+    private int idTileType;
 
     public Tile() {
 
     }
 
-    public Tile(int xPos, int yPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int tileType) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Tile(int tileXPos, int tileYPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int idTileType) {
+        this.tileXPos = tileXPos;
+        this.tileYPos = tileYPos;
         this.tileAtPointOne = tileAtPointOne;
         this.tileAtPointTwo = tileAtPointTwo;
         this.tileAtPointThree = tileAtPointThree;
         this.tileAtPointFour = tileAtPointFour;
         this.tileAtPointFive = tileAtPointFive;
         this.tileAtPointSix = tileAtPointSix;
-        this.tileType = tileType;
+        this.idTileType = idTileType;
     }
 
-    public Tile(Long idTile, int xPos, int yPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int tileType) {
+    public Tile(Long idTile, int tileXPos, int tileYPos, boolean tileAtPointOne, boolean tileAtPointTwo, boolean tileAtPointThree, boolean tileAtPointFour, boolean tileAtPointFive, boolean tileAtPointSix, int idTileType) {
         this.idTile = idTile;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.tileXPos = tileXPos;
+        this.tileYPos = tileYPos;
         this.tileAtPointOne = tileAtPointOne;
         this.tileAtPointTwo = tileAtPointTwo;
         this.tileAtPointThree = tileAtPointThree;
         this.tileAtPointFour = tileAtPointFour;
         this.tileAtPointFive = tileAtPointFive;
         this.tileAtPointSix = tileAtPointSix;
-        this.tileType = tileType;
+        this.idTileType = idTileType;
     }
-//
+
     public Long getIdTile() {
         return idTile;
     }
@@ -73,20 +73,20 @@ public class Tile {
         this.idTile = idTile;
     }
 
-    public int getxPos() {
-        return xPos;
+    public int getTileXPos() {
+        return tileXPos;
     }
 
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
+    public void setTileXPos(int tileXPos) {
+        this.tileXPos = tileXPos;
     }
 
-    public int getyPos() {
-        return yPos;
+    public int getTileYPos() {
+        return tileYPos;
     }
 
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
+    public void setTileYPos(int tileYPos) {
+        this.tileYPos = tileYPos;
     }
 
     public boolean isTileAtPointOne() {
@@ -137,12 +137,12 @@ public class Tile {
         this.tileAtPointSix = tileAtPointSix;
     }
 
-    public int getTileType() {
-        return tileType;
+    public int getIdTileType() {
+        return idTileType;
     }
 
-    public void setTileType(int tileType) {
-        this.tileType = tileType;
+    public void setIdTileType(int idTileType) {
+        this.idTileType = idTileType;
     }
 }
 

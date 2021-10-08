@@ -138,7 +138,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-/*
+
     @GetMapping("/civilisation/{id}")
     public ResponseEntity<Civilisation> findCivilisationById(@PathVariable("id") Long id){
         Optional<Civilisation> civilisation= civilisationRepo.findById(id);
@@ -152,7 +152,7 @@ public class HomeController {
     @GetMapping("/civilisation/{x_pos}/{y_pos}")
     public ResponseEntity<Civilisation> findCivilisationByXandY(@PathVariable("x_pos")int x,
                                                                 @PathVariable("y_pos") int y){
-        Optional<Civilisation> civ = civilisationRepo.findCivilisationByX_posAndY_pos(x,y);
+        Optional<Civilisation> civ = civilisationRepo.findCivilisationByCivXPosAndCivYPos(x,y);
         if (civ.isPresent()){
             return ResponseEntity.status(HttpStatus.OK).body(civ.get());
         } else {
@@ -160,8 +160,31 @@ public class HomeController {
         }
     }
 
+    //Find Player by x and y pos
+    @GetMapping("/tiles/{xPos}/{yPos}")
+    public ResponseEntity<Tile> findTilesByCoord(@PathVariable("xPos") int x,
+                                                 @PathVariable("yPos") int y){
 
- */
+        Optional<Tile> tile = tileRepo.findTileByTileXPosAndTileYPos(x,y);
+        if (tile.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(tile.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    //Find Player by x and y pos
+    @GetMapping("/players/{xPos}/{yPos}")
+    public ResponseEntity<Player> findPlayerByCoord(@PathVariable("xPos") int x,
+                                                    @PathVariable("yPos") int y){
+
+        Optional<Player> player = playerRepo.findPlayerByPlayerXPosAndPlayerYPos(x,y);
+        if (player.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(player.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping("/addPlayer")
@@ -171,7 +194,7 @@ public class HomeController {
         playerRepo.save(player1);
 
         //location header
-        String location = "/gameboard.html";
+        String location = "gameboard.html";
 
         //HTTPStatus Created 201
         return ResponseEntity.status(HttpStatus.CREATED)

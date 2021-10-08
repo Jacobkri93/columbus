@@ -1,5 +1,7 @@
 package dk.kea.columbus.Model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,36 +11,52 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlayer;
 
-    @Column
+    @JsonInclude
+    @Transient
+    @Column(name = "id_inventory",nullable = true)
     private int idInventory;
-    @Column
+    @Column(name = "amount_of_carriers")
     private int amountOfCarriers;
 
-    @Column
+    @Column(name = "amount_of_soldiers")
     private int amountOfSoldiers;
 
-    @Column
+    @Column(name = "amount_of_monks")
     private int amountOfMonks;
 
-    @Column
+    @Column(name = "currency")
     private float currency;
-    @Column
+    @Column(name = "max_weight")
     private float maxWeight;
-    @Column
+    @Column(name = "remaining_bp")
     private int remainingBp;
-    @Column
+    @Column(name = "ship_x_pos")
     private int shipXPos;
-    @Column
+    @Column(name = "ship_y_pos")
     private int shipYPos;
-    @Column
+    @Column(name = "player_x_pos")
     private int playerXPos;
-    @Column
+    @Column(name = "player_y_pos")
     private int playerYPos;
 
     public Player (){}
 
     public Player(int idInventory, int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
         this.idInventory = idInventory;
+        this.amountOfCarriers = amountOfCarriers;
+        this.amountOfSoldiers = amountOfSoldiers;
+        this.amountOfMonks = amountOfMonks;
+        this.currency = currency;
+        this.maxWeight = maxWeight;
+        this.remainingBp = remainingBp;
+        this.shipXPos = shipXPos;
+        this.shipYPos = shipYPos;
+        this.playerXPos = playerXPos;
+        this.playerYPos = playerYPos;
+    }
+
+    public Player(Long idPlayer, int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
+        this.idPlayer = idPlayer;
         this.amountOfCarriers = amountOfCarriers;
         this.amountOfSoldiers = amountOfSoldiers;
         this.amountOfMonks = amountOfMonks;

@@ -9,5 +9,5 @@ import java.util.Optional;
 @RestController
 public interface PlayerRepo extends JpaRepository<Player,Long> {
 
-    //Optional<Player> findPlayerByPlayer_x_posAndPlayer_y_pos(int player_x_pos,int player_y_pos);
+    Optional<Player> findPlayerByPlayerXPosAndPlayerYPos(int x, int y);
 }

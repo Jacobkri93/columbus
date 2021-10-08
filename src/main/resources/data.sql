@@ -132,33 +132,34 @@ CREATE TABLE IF NOT EXISTS `columbusgame`.`temp_exp_tiles` (
 
 INSERT INTO civilisations (civilisation_name,attitude_player_one,attitude_player_two,attitude_player_three,attitude_player_four,x_pos,y_pos)
 VALUES
-    ('village','neutral','neutral','neutral','neutral',1,2),
-    ('village','hostile','hostile','hostile','hostile',3,4),
-    ('village','friendly','friendly','friendly','friendly',5,6),
-    ('civilisation','neutral','neutral','neutral','neutral',7,8),
-    ('civilisation','hostile','hostile','hostile','hostile',9,10),
-    ('civilisation','friendly','friendly','friendly','friendly',6,5),
-    ('none',null,null,null,null,null,null);
+('village','neutral','neutral','neutral','neutral',1,2),
+('village','hostile','hostile','hostile','hostile',3,4),
+('village','friendly','friendly','friendly','friendly',5,6),
+('civilisation','neutral','neutral','neutral','neutral',7,8),
+('civilisation','hostile','hostile','hostile','hostile',9,10),
+('civilisation','friendly','friendly','friendly','friendly',6,5),
+('none',null,null,null,null,null,null);
 
 INSERT INTO tile_types (tile_type_name,movement_points,id_civilisation)
 VALUES
-    ('jungle',6,7),
-    ('desert',8,7),
-    ('swamp',12,7),
-    ('mountain',8,7),
-    ('steppes',4,7),
-    ('ocean',4,7),
-    ('oceantoland',6,7) ;
+('jungle',6,7),
+('desert',8,7),
+('swamp',12,7),
+('mountain',8,7),
+('steppes',4,7),
+('ocean',4,7),
+('oceantoland',6,7) ;
 
 
 INSERT INTO tiles (x_pos, y_pos, tile_at_point_one, tile_at_point_two, tile_at_point_three, tile_at_point_four, tile_at_point_five, tile_at_point_six, id_tile_type)
 VALUES
-    (1,2,"false","false","false","false","false","false",7),
-    (4,6,"false","false","false","false","false","false",7);
-INSERT INTO players (amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos,id_inventory)
-VALUES (10,10,2,20,500,12,5,5,6,6,1);
+(1,2,"false","false","false","false","false","false",7),
+(4,6,"false","false","false","false","false","false",7);
+
+INSERT INTO players (id_player, amount_of_carriers, amount_of_soldiers, amount_of_monks, currency, max_weight, remaining_bp, ship_x_pos, ship_y_pos, player_x_pos, player_y_pos)
+VALUES (DEFAULT,10,2,20,500,12,5,5,6,6,1);
 
 INSERT INTO inventories (id_inventory, amount_gold, amount_jewel, amount_art,
                          amount_leather, amount_canoe, amount_gift, amount_water, amount_food,id_player)
 VALUES
-    (DEFAULT,10,0,0,0,0,0,10,20,1);
+(DEFAULT,10,0,0,0,0,0,10,20,1);
