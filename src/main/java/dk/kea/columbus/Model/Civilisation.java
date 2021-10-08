@@ -7,17 +7,17 @@ import javax.persistence.*;
 public class Civilisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_civilisation;
+    private Long idCivilisation;
     @Column
-    private String civilisation_name;
+    private String civilisationName;
     @Column
-    private String attitude_player_one;
+    private String attitudePlayerOne;
     @Column
-    private String attitude_player_two;
+    private String attitudePlayerTwo;
     @Column
-    private String attitude_player_three;
+    private String attitudePlayerThree;
     @Column
-    private String attitude_player_four;
+    private String attitudePlayerFour;
     @Column
     private int xPos;
     @Column
@@ -26,88 +26,88 @@ public class Civilisation {
     public Civilisation(){}
 
 
-    public Civilisation(Long id_civilisation, String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four, int xPos, int yPos) {
-        this.id_civilisation = id_civilisation;
-        this.civilisation_name = civilisation_name;
-        this.attitude_player_one = attitude_player_one;
-        this.attitude_player_two = attitude_player_two;
-        this.attitude_player_three = attitude_player_three;
-        this.attitude_player_four = attitude_player_four;
+    public Civilisation(Long idCivilisation, String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int xPos, int yPos) {
+        this.idCivilisation = idCivilisation;
+        this.civilisationName = civilisationName;
+        this.attitudePlayerOne = attitudePlayerOne;
+        this.attitudePlayerTwo = attitudePlayerTwo;
+        this.attitudePlayerThree = attitudePlayerThree;
+        this.attitudePlayerFour = attitudePlayerFour;
         this.xPos = xPos;
         this.yPos = yPos;
     }
 
-    public Civilisation(String civilisation_name, String attitude_player_one, String attitude_player_two, String attitude_player_three, String attitude_player_four, int xPos, int yPos) {
-        this.civilisation_name = civilisation_name;
-        this.attitude_player_one = attitude_player_one;
-        this.attitude_player_two = attitude_player_two;
-        this.attitude_player_three = attitude_player_three;
-        this.attitude_player_four = attitude_player_four;
+    public Civilisation(String civilisationName, String attitudePlayerOne, String attitudePlayerTwo, String attitudePlayerThree, String attitudePlayerFour, int xPos, int yPos) {
+        this.civilisationName = civilisationName;
+        this.attitudePlayerOne = attitudePlayerOne;
+        this.attitudePlayerTwo = attitudePlayerTwo;
+        this.attitudePlayerThree = attitudePlayerThree;
+        this.attitudePlayerFour = attitudePlayerFour;
         this.xPos = xPos;
         this.yPos = yPos;
     }
 
-    public Long getId_civilisation() {
-        return id_civilisation;
+    public Long getIdCivilisation() {
+        return idCivilisation;
     }
 
-    public void setId_civilisation(Long id_civilisation) {
-        this.id_civilisation = id_civilisation;
+    public void setIdCivilisation(Long idCivilisation) {
+        this.idCivilisation = idCivilisation;
     }
 
-    public String getCivilisation_name() {
-        return civilisation_name;
+    public String getCivilisationName() {
+        return civilisationName;
     }
 
-    public void setCivilisation_name(String civilisation_name) {
-        this.civilisation_name = civilisation_name;
+    public void setCivilisationName(String civilisationName) {
+        this.civilisationName = civilisationName;
     }
 
-    public String getAttitude_player_one() {
-        return attitude_player_one;
+    public String getAttitudePlayerOne() {
+        return attitudePlayerOne;
     }
 
-    public void setAttitude_player_one(String attitude_player_one) {
-        this.attitude_player_one = attitude_player_one;
+    public void setAttitudePlayerOne(String attitudePlayerOne) {
+        this.attitudePlayerOne = attitudePlayerOne;
     }
 
-    public String getAttitude_player_two() {
-        return attitude_player_two;
+    public String getAttitudePlayerTwo() {
+        return attitudePlayerTwo;
     }
 
-    public void setAttitude_player_two(String attitude_player_two) {
-        this.attitude_player_two = attitude_player_two;
+    public void setAttitudePlayerTwo(String attitudePlayerTwo) {
+        this.attitudePlayerTwo = attitudePlayerTwo;
     }
 
-    public String getAttitude_player_three() {
-        return attitude_player_three;
+    public String getAttitudePlayerThree() {
+        return attitudePlayerThree;
     }
 
-    public void setAttitude_player_three(String attitude_player_three) {
-        this.attitude_player_three = attitude_player_three;
+    public void setAttitudePlayerThree(String attitudePlayerThree) {
+        this.attitudePlayerThree = attitudePlayerThree;
     }
 
-    public String getAttitude_player_four() {
-        return attitude_player_four;
+    public String getAttitudePlayerFour() {
+        return attitudePlayerFour;
     }
 
-    public void setAttitude_player_four(String attitude_player_four) {
-        this.attitude_player_four = attitude_player_four;
+    public void setAttitudePlayerFour(String attitudePlayerFour) {
+        this.attitudePlayerFour = attitudePlayerFour;
     }
 
-    public int getXPos() {
+    public int getxPos() {
         return xPos;
     }
 
-    public void setXPos(int xPos) {
+    public void setxPos(int xPos) {
         this.xPos = xPos;
     }
 
-    public int getYPos() {
+    public int getyPos() {
         return yPos;
     }
 
-    public void setYPos(int yPos) {
+    public void setyPos(int yPos) {
         this.yPos = yPos;
     }
 }

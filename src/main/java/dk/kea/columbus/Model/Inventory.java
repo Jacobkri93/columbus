@@ -8,118 +8,118 @@ public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_inventory;
+    private Long idInventory;
     @Column
-    private float amount_gold;
+    private float amountGold;
     @Column
-    private float amount_jewel;
+    private float amountJewel;
     @Column
-    private float amount_art;
+    private float amountArt;
     @Column
-    private float amount_leather;
+    private float amountLeather;
     @Column
-    private float amount_canoe;
+    private float amountCanoe;
     @Column
-    private float amount_gift;
+    private float amountGift;
     @Column
-    private float amount_water;
+    private float amountWater;
     @Column
-    private float amount_food;
+    private float amountFood;
     @Column
-    private int id_player;
+    private int idPlayer;
 
     public Inventory(){}
 
-    public Inventory(Long id_inventory, float amount_gold, float amount_jewel, float amount_art, float amount_leather, float amount_canoe, float amount_gift, float amount_water, float amount_food, int id_player) {
-        this.id_inventory = id_inventory;
-        this.amount_gold = amount_gold;
-        this.amount_jewel = amount_jewel;
-        this.amount_art = amount_art;
-        this.amount_leather = amount_leather;
-        this.amount_canoe = amount_canoe;
-        this.amount_gift = amount_gift;
-        this.amount_water = amount_water;
-        this.amount_food = amount_food;
-        this.id_player = id_player;
+    public Inventory(Long idInventory, float amountGold, float amountJewel, float amountArt, float amountLeather, float amountCanoe, float amountGift, float amountWater, float amountFood, int idPlayer) {
+        this.idInventory = idInventory;
+        this.amountGold = amountGold;
+        this.amountJewel = amountJewel;
+        this.amountArt = amountArt;
+        this.amountLeather = amountLeather;
+        this.amountCanoe = amountCanoe;
+        this.amountGift = amountGift;
+        this.amountWater = amountWater;
+        this.amountFood = amountFood;
+        this.idPlayer = idPlayer;
     }
 
-    public Long getId_inventory() {
-        return id_inventory;
+    public Long getIdInventory() {
+        return idInventory;
     }
 
-    public void setId_inventory(Long id_inventory) {
-        this.id_inventory = id_inventory;
+    public void setIdInventory(Long idInventory) {
+        this.idInventory = idInventory;
     }
 
-    public float getAmount_gold() {
-        return amount_gold;
+    public float getAmountGold() {
+        return amountGold;
     }
 
-    public void setAmount_gold(float amount_gold) {
-        this.amount_gold = amount_gold;
+    public void setAmountGold(float amountGold) {
+        this.amountGold = amountGold;
     }
 
-    public float getAmount_jewel() {
-        return amount_jewel;
+    public float getAmountJewel() {
+        return amountJewel;
     }
 
-    public void setAmount_jewel(float amount_jewel) {
-        this.amount_jewel = amount_jewel;
+    public void setAmountJewel(float amountJewel) {
+        this.amountJewel = amountJewel;
     }
 
-    public float getAmount_art() {
-        return amount_art;
+    public float getAmountArt() {
+        return amountArt;
     }
 
-    public void setAmount_art(float amount_art) {
-        this.amount_art = amount_art;
+    public void setAmountArt(float amountArt) {
+        this.amountArt = amountArt;
     }
 
-    public float getAmount_leather() {
-        return amount_leather;
+    public float getAmountLeather() {
+        return amountLeather;
     }
 
-    public void setAmount_leather(float amount_leather) {
-        this.amount_leather = amount_leather;
+    public void setAmountLeather(float amountLeather) {
+        this.amountLeather = amountLeather;
     }
 
-    public float getAmount_canoe() {
-        return amount_canoe;
+    public float getAmountCanoe() {
+        return amountCanoe;
     }
 
-    public void setAmount_canoe(float amount_canoe) {
-        this.amount_canoe = amount_canoe;
+    public void setAmountCanoe(float amountCanoe) {
+        this.amountCanoe = amountCanoe;
     }
 
-    public float getAmount_gift() {
-        return amount_gift;
+    public float getAmountGift() {
+        return amountGift;
     }
 
-    public void setAmount_gift(float amount_gift) {
-        this.amount_gift = amount_gift;
+    public void setAmountGift(float amountGift) {
+        this.amountGift = amountGift;
     }
 
-    public float getAmount_water() {
-        return amount_water;
+    public float getAmountWater() {
+        return amountWater;
     }
 
-    public void setAmount_water(float amount_water) {
-        this.amount_water = amount_water;
+    public void setAmountWater(float amountWater) {
+        this.amountWater = amountWater;
     }
 
-    public float getAmount_food() {
-        return amount_food;
+    public float getAmountFood() {
+        return amountFood;
     }
 
-    public void setAmount_food(float amount_food) {
-        this.amount_food = amount_food;
+    public void setAmountFood(float amountFood) {
+        this.amountFood = amountFood;
     }
 
-    public int getId_player() {
-        return id_player;
+    public int getIdPlayer() {
+        return idPlayer;
     }
 
-    public void setId_player(int id_player) {
-        this.id_player = id_player;
+    public void setIdPlayer(int idPlayer) {
+        this.idPlayer = idPlayer;
     }
 }

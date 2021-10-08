@@ -7,103 +7,103 @@ import javax.persistence.*;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_player;
+    private Long idPlayer;
 
     @Column
-    private int id_inventory;
+    private int idInventory;
     @Column
-    private int amount_of_carriers;
+    private int amountOfCarriers;
 
     @Column
-    private int amount_of_soldiers;
+    private int amountOfSoldiers;
 
     @Column
-    private int amount_of_monks;
+    private int amountOfMonks;
 
     @Column
     private float currency;
     @Column
-    private float max_weight;
+    private float maxWeight;
     @Column
-    private int remaining_bp;
+    private int remainingBp;
     @Column
-    private int ship_x_pos;
+    private int shipXPos;
     @Column
-    private int ship_y_pos;
+    private int shipYPos;
     @Column
-    private int player_x_pos;
+    private int playerXPos;
     @Column
-    private int player_y_pos;
+    private int playerYPos;
 
     public Player (){}
 
-    public Player(int id_inventory, int amount_of_carriers, int amount_of_soldiers, int amount_of_monks, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
-        this.id_inventory = id_inventory;
-        this.amount_of_carriers = amount_of_carriers;
-        this.amount_of_soldiers = amount_of_soldiers;
-        this.amount_of_monks = amount_of_monks;
+    public Player(int idInventory, int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
+        this.idInventory = idInventory;
+        this.amountOfCarriers = amountOfCarriers;
+        this.amountOfSoldiers = amountOfSoldiers;
+        this.amountOfMonks = amountOfMonks;
         this.currency = currency;
-        this.max_weight = max_weight;
-        this.remaining_bp = remaining_bp;
-        this.ship_x_pos = ship_x_pos;
-        this.ship_y_pos = ship_y_pos;
-        this.player_x_pos = player_x_pos;
-        this.player_y_pos = player_y_pos;
+        this.maxWeight = maxWeight;
+        this.remainingBp = remainingBp;
+        this.shipXPos = shipXPos;
+        this.shipYPos = shipYPos;
+        this.playerXPos = playerXPos;
+        this.playerYPos = playerYPos;
     }
 
-    public Player(Long id_player, int id_inventory, int amount_of_carriers, int amount_of_soldiers, int amount_of_monks, float currency, float max_weight, int remaining_bp, int ship_x_pos, int ship_y_pos, int player_x_pos, int player_y_pos) {
-        this.id_player = id_player;
-        this.id_inventory = id_inventory;
-        this.amount_of_carriers = amount_of_carriers;
-        this.amount_of_soldiers = amount_of_soldiers;
-        this.amount_of_monks = amount_of_monks;
+    public Player(Long idPlayer, int idInventory, int amountOfCarriers, int amountOfSoldiers, int amountOfMonks, float currency, float maxWeight, int remainingBp, int shipXPos, int shipYPos, int playerXPos, int playerYPos) {
+        this.idPlayer = idPlayer;
+        this.idInventory = idInventory;
+        this.amountOfCarriers = amountOfCarriers;
+        this.amountOfSoldiers = amountOfSoldiers;
+        this.amountOfMonks = amountOfMonks;
         this.currency = currency;
-        this.max_weight = max_weight;
-        this.remaining_bp = remaining_bp;
-        this.ship_x_pos = ship_x_pos;
-        this.ship_y_pos = ship_y_pos;
-        this.player_x_pos = player_x_pos;
-        this.player_y_pos = player_y_pos;
+        this.maxWeight = maxWeight;
+        this.remainingBp = remainingBp;
+        this.shipXPos = shipXPos;
+        this.shipYPos = shipYPos;
+        this.playerXPos = playerXPos;
+        this.playerYPos = playerYPos;
     }
 
-    public int getId_inventory() {
-        return id_inventory;
+    public Long getIdPlayer() {
+        return idPlayer;
     }
 
-    public void setId_inventory(int id_inventory) {
-        this.id_inventory = id_inventory;
+    public void setIdPlayer(Long idPlayer) {
+        this.idPlayer = idPlayer;
     }
 
-    public Long getId_player() {
-        return id_player;
+    public int getIdInventory() {
+        return idInventory;
     }
 
-    public void setId_player(Long id_player) {
-        this.id_player = id_player;
+    public void setIdInventory(int idInventory) {
+        this.idInventory = idInventory;
     }
 
-    public int getAmount_of_carriers() {
-        return amount_of_carriers;
+    public int getAmountOfCarriers() {
+        return amountOfCarriers;
     }
 
-    public void setAmount_of_carriers(int amount_of_carriers) {
-        this.amount_of_carriers = amount_of_carriers;
+    public void setAmountOfCarriers(int amountOfCarriers) {
+        this.amountOfCarriers = amountOfCarriers;
     }
 
-    public int getAmount_of_soldiers() {
-        return amount_of_soldiers;
+    public int getAmountOfSoldiers() {
+        return amountOfSoldiers;
     }
 
-    public void setAmount_of_soldiers(int amount_of_soldiers) {
-        this.amount_of_soldiers = amount_of_soldiers;
+    public void setAmountOfSoldiers(int amountOfSoldiers) {
+        this.amountOfSoldiers = amountOfSoldiers;
     }
 
-    public int getAmount_of_monks() {
-        return amount_of_monks;
+    public int getAmountOfMonks() {
+        return amountOfMonks;
     }
 
-    public void setAmount_of_monks(int amount_of_monks) {
-        this.amount_of_monks = amount_of_monks;
+    public void setAmountOfMonks(int amountOfMonks) {
+        this.amountOfMonks = amountOfMonks;
     }
 
     public float getCurrency() {
@@ -114,69 +114,68 @@ public class Player {
         this.currency = currency;
     }
 
-    public float getMax_weight() {
-        return max_weight;
+    public float getMaxWeight() {
+        return maxWeight;
     }
 
-    public void setMax_weight(float max_weight) {
-        this.max_weight = max_weight;
+    public void setMaxWeight(float maxWeight) {
+        this.maxWeight = maxWeight;
     }
 
-    public int getRemaining_bp() {
-        return remaining_bp;
+    public int getRemainingBp() {
+        return remainingBp;
     }
 
-    public void setRemaining_bp(int remaining_bp) {
-        this.remaining_bp = remaining_bp;
+    public void setRemainingBp(int remainingBp) {
+        this.remainingBp = remainingBp;
     }
 
-    public int getShip_x_pos() {
-        return ship_x_pos;
+    public int getShipXPos() {
+        return shipXPos;
     }
 
-    public void setShip_x_pos(int ship_x_pos) {
-        this.ship_x_pos = ship_x_pos;
+    public void setShipXPos(int shipXPos) {
+        this.shipXPos = shipXPos;
     }
 
-    public int getShip_y_pos() {
-        return ship_y_pos;
+    public int getShipYPos() {
+        return shipYPos;
     }
 
-    public void setShip_y_pos(int ship_y_pos) {
-        this.ship_y_pos = ship_y_pos;
+    public void setShipYPos(int shipYPos) {
+        this.shipYPos = shipYPos;
     }
 
-    public int getPlayer_x_pos() {
-        return player_x_pos;
+    public int getPlayerXPos() {
+        return playerXPos;
     }
 
-    public void setPlayer_x_pos(int player_x_pos) {
-        this.player_x_pos = player_x_pos;
+    public void setPlayerXPos(int playerXPos) {
+        this.playerXPos = playerXPos;
     }
 
-    public int getPlayer_y_pos() {
-        return player_y_pos;
+    public int getPlayerYPos() {
+        return playerYPos;
     }
 
-    public void setPlayer_y_pos(int player_y_pos) {
-        this.player_y_pos = player_y_pos;
+    public void setPlayerYPos(int playerYPos) {
+        this.playerYPos = playerYPos;
     }
-
 
     @Override
     public String toString() {
         return "Player{" +
-                "id_player=" + id_player +
-                ", id_inventory=" + id_inventory +
-                ", amount_of_carriers=" + amount_of_carriers +
-                ", amount_of_soldiers=" + amount_of_soldiers +
+                "id_player=" + idPlayer +
+                ", id_inventory=" + idInventory +
+                ", amount_of_carriers=" + amountOfCarriers +
+                ", amount_of_soldiers=" + amountOfSoldiers +
                 ", currency=" + currency +
-                ", max_weight=" + max_weight +
-                ", remaining_bp=" + remaining_bp +
-                ", ship_x_pos=" + ship_x_pos +
-                ", ship_y_pos=" + ship_y_pos +
-                ", player_x_pos=" + player_x_pos +
-                ", player_y_pos=" + player_y_pos +
+                ", max_weight=" + maxWeight +
+                ", remaining_bp=" + remainingBp +
+                ", ship_x_pos=" + shipXPos +
+                ", ship_y_pos=" + shipYPos +
+                ", player_x_pos=" + playerXPos +
+                ", player_y_pos=" + playerYPos +
                 '}';
     }
 
