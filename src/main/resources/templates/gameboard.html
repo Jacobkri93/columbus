@@ -834,7 +834,10 @@
                 hexagonsHTML += `<div
                 class="hexButton"
                 id="hexBtnId-${col}-${row}"
-                ></div>`
+                ><div
+                id="hexBtnImageId-${col}-${row}"
+                class="hexBtnImageStyle"
+                ></div></div>`
             }
             hexagonsHTML += `</div>`
         }
@@ -843,16 +846,36 @@
 
         const topLeftBtn = document.getElementById("hexBtnId-0-0")
         topLeftBtn.onclick = e => movePlayerTopLeft()
+        const topLeftImage = document.getElementById("hexBtnImageId-0-0")
+        //topLeftImage.style.backgroundImage = 'url("../static/images/arrowdir-upleft.png")'
+
         const topRightBtn = document.getElementById("hexBtnId-1-0")
         topRightBtn.onclick = e => movePlayerTopRight()
+        const topRightImage = document.getElementById("hexBtnImageId-1-0")
+        //topRightImage.style.backgroundImage = 'url("../static/images/arrowdir-upright.png")'
+
         const leftBtn = document.getElementById("hexBtnId-0-1")
         leftBtn.onclick = e => movePlayerLeft()
+        const leftImage = document.getElementById("hexBtnImageId-0-1")
+        //leftImage.style.backgroundImage = 'url("../static/images/arrowdir-left.png")'
+
         const rightBtn = document.getElementById("hexBtnId-2-1")
         rightBtn.onclick = e => movePlayerRight()
+        const rightImage = document.getElementById("hexBtnImageId-2-1")
+        //rightImage.style.backgroundImage = 'url("../static/images/arrowdir-right.png")'
+
         const bottomLeftBtn = document.getElementById("hexBtnId-0-2")
         bottomLeftBtn.onclick = e => movePlayerBottomLeft()
+        const bottomLeftImage = document.getElementById("hexBtnImageId-0-2")
+        //bottomLeftImage.style.backgroundImage = 'url("../static/images/arrowdir-downleft.png")'
+
         const bottomRightBtn = document.getElementById("hexBtnId-1-2")
         bottomRightBtn.onclick = e => movePlayerBottomRight()
+        const bottomRightImage = document.getElementById("hexBtnImageId-1-2")
+        //bottomRightImage.style.backgroundImage = 'url("../static/images/arrowdir-downright.png")'
+
+        const middleImage = document.getElementById("hexBtnImageId-1-1")
+        //middleImage.style.backgroundImage = 'url("../static/images/four-directions-arrow.png")'
     }
 
 </script>

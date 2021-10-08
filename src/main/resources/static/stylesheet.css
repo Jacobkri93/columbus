@@ -95,12 +95,6 @@ body {
     clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
     margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
 
-    /*
-    height: var(--size);
-    width: calc(var(--size)*1.1547);
-    clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
-    margin-bottom: calc(var(--margin) - var(--size)*0.2885);
-     */
 }
 
 .container::before {
@@ -181,7 +175,7 @@ body {
     height: calc(var(--size) * 1.1547);
     clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
     margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
-    background-color: blueviolet;
+    background-color: dodgerblue;
 }
 .hexButton:hover{
     background-color: chartreuse;
@@ -215,11 +209,19 @@ div .hexagon {
     left: calc(var(--size) * 0.5);
 }
 
- .playerTokenClass {
-     z-index: 7;
-     width: 50px;
-     height: 50px;
-     background-image: none ;
-     position: absolute;
-     background-size: contain;
- }
+.playerTokenClass {
+    z-index: 7;
+    width: 50px;
+    height: 50px;
+    background-image: none ;
+    position: absolute;
+    background-size: contain;
+}
+
+.hexBtnImageStyle {
+    z-index: 7;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    background-size: contain;
+}
