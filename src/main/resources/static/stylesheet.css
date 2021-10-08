@@ -209,6 +209,61 @@ div .hexagon {
     left: calc(var(--size) * 0.5);
 }
 
+ .playerTokenClass {
+     z-index: 7;
+     width: 50px;
+     height: 50px;
+     background-image: none ;
+     position: absolute;
+     background-size: contain;
+ }
+/*MODAL*********/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: white; /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* Could be more or less, depending on screen size */
+
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+modal_table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+
+duration_h1{
+    display: inline
+}
+}
+/***********/
+
+
+
 .playerTokenClass {
     z-index: 7;
     width: 50px;
