@@ -95,12 +95,6 @@ body {
     clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
     margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
 
-    /*
-    height: var(--size);
-    width: calc(var(--size)*1.1547);
-    clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
-    margin-bottom: calc(var(--margin) - var(--size)*0.2885);
-     */
 }
 
 .container::before {
@@ -181,7 +175,7 @@ body {
     height: calc(var(--size) * 1.1547);
     clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
     margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
-    background-color: blueviolet;
+    background-color: dodgerblue;
 }
 .hexButton:hover{
     background-color: chartreuse;
@@ -223,3 +217,64 @@ div .hexagon {
      position: absolute;
      background-size: contain;
  }
+/*MODAL*********/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: white; /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* Could be more or less, depending on screen size */
+
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+modal_table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}
+
+
+.playerTokenClass {
+    z-index: 7;
+    width: 50px;
+    height: 50px;
+    background-image: none ;
+    position: absolute;
+    background-size: contain;
+}
+
+.hexBtnImageStyle {
+    z-index: 7;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    background-size: contain;
+}
+
+.moveBtnTitle {
+    text-align: center;
+}
