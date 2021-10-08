@@ -77,7 +77,9 @@
         <div id="weightLimit">Weight 0/40</div>
         <button class="start_btn" onclick="createPlayerOnBoard()">START GAME</button>
 
-        <div id="HexButtonGrid" class="hexButtonGrid"></div>
+        <div class="hexButtonGrid">
+            <div id="HexButtonGrid" class="hexButtonContainer"></div>
+        </div>
     </div>
     <div class="main">
         <div id="gameboard" class="container"></div>
@@ -87,8 +89,8 @@
 <!--Sidebar / HUD-->
 <script>
 
-    let terrainColors = ['../static/images/unexplored.png', '../static/images/dessert.gif', '../static/images/monkas.gif', '../static/images/grassmoving.gif', '../static/images/waves.jpg', '../static/images/Bjerg.png', '../static/images/shrek.gif', 'Flod.png']
-    let terrainTypes = ['Unexplored', 'Dessert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
+    let terrainColors = ['../static/images/unexplored.png', '../static/images/desert-sand3.gif', '../static/images/monkas.gif', '../static/images/grassmoving.gif', '../static/images/original.gif', '../static/images/mountain4.gif', '../static/images/shrek.gif', '../static/images/coast2.gif']
+    let terrainTypes = ['Unexplored', 'Desert', 'Jungle', 'Grass', 'Sea', 'Mountains', 'Swamp', 'Coast']
 
     function makeLocalCache() {
         let soldierCount = 0
@@ -306,6 +308,54 @@
         showPlayerOnTile(col, row)
     }
 
+    function movePlayerTopLeft(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX - (1 - (currentX % 2))
+        const newY = currentY - 1
+        movePlayer(newX, newY)
+    }
+    function movePlayerTopRight(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX + (currentX % 2)
+        const newY = currentY - 1
+        movePlayer(newX, newY)
+    }
+    function movePlayerLeft(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX - 1
+        movePlayer(newX, currentY)
+    }
+    function movePlayerRight(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX + 1
+        movePlayer(newX, currentY)
+    }
+    function movePlayerBottomLeft(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX - (1 - currentX % 2)
+        const newY = currentY + 1
+        movePlayer(newX, newY)
+    }
+    function movePlayerBottomRight(){
+        const player = cache.getPlayer()
+        const currentX = player.x_pos
+        const currentY = player.y_pos
+        const newX = currentX + (currentX % 2)
+        const newY = currentY + 1
+        movePlayer(newX, newY)
+    }
+
+
     function showPlayerOnTile(col, row) {
         let nodeId = "hexagon-" + col + "-" + row
         //TODO: Show player on nodeId tile
@@ -376,12 +426,12 @@
         let maxCount = 0;
 
         const countMap = new Map();
-        countMap.set('url("../static/images/dessert.png")', 0)
-        countMap.set('url("../static/images/jungle.png")', 0)
-        countMap.set('url("../static/images/waves.jpg")', 0)
-        countMap.set('url("../static/images/grass.png")', 0)
-        countMap.set('url("../static/images/Bjerg.png")', 0)
-        countMap.set('url("../static/images/Sump.png")', 0)
+        countMap.set('url("../static/images/desert-sand3.gif")', 0)
+        countMap.set('url("../static/images/monkas.gif")', 0)
+        countMap.set('url("../static/images/original.gif")', 0)
+        countMap.set('url("../static/images/grassmoving.gif")', 0)
+        countMap.set('url("../static/images/mountain4.gif")', 0)
+        countMap.set('url("../static/images/shrek.gif")', 0)
 
         for (let tile of hexMap.values()) {
             switch (tile) {
@@ -420,22 +470,22 @@
         let returnKey;
 
         switch (arr[randInt - 1]) {
-            case 'url("../static/images/dessert.png")':
+            case 'url("../static/images/desert-sand3.gif")':
                 returnKey = 1;
                 break;
-            case 'url("../static/images/jungle.png")':
+            case 'url("../static/images/monkas.gif")':
                 returnKey = 2;
                 break;
-            case 'url("../static/images/grass.png")':
+            case 'url("../static/images/grassmoving.gif")':
                 returnKey = 3;
                 break;
-            case 'url("../static/images/waves.jpg")':
+            case 'url("../static/images/original.gif")':
                 returnKey = 4;
                 break;
-            case 'url("../static/images/Bjerg.png")':
+            case 'url("../static/images/mountain4.gif")':
                 returnKey = 5;
                 break;
-            case 'url("../static/images/Sump.png")':
+            case 'url("../static/images/shrek.gif")':
                 returnKey = 6;
                 break;
             default:
@@ -647,7 +697,6 @@
                         onclick="explore(${col},${row})"
                     ><br><br>${terrainTypes[0]}</div>`
                 }
-                //TODO: TIl i morgen - fixxx
                 if (col == cols - (row % 2) - 1) {
                     hexagonsHTML += `<div
                     class="hexagon"
@@ -661,7 +710,7 @@
                     hexagonsHTML += `<div
                     class="hexagon"
                     id="hexagon-${col + 2}-${row}"
-                    style="background-image: url(../static/images/Sump.png); object-fit: contain;"
+                    style="background-image: url(../static/images/coast2.gif); object-fit: contain;"
                     ><br><br>${terrainTypes[7]}
                     </div>`
 
@@ -678,17 +727,30 @@
     function createMoveButtons() {
         let hexagonsHTML = ""
         for (let row = 0; row < 3; row++) {
-            hexagonsHTML += `<div>`
+            hexagonsHTML += `<div class="some-${row + 1}">`
             for (let col = 0; col < 2 + (row % 2); col++) {
                 hexagonsHTML += `<div
                     class="hexButton"
                     id="hexBtnId-${col}-${row}"
-                </div>`
+                ></div>`
             }
             hexagonsHTML += `</div>`
         }
 
-        document.getElementById('hexButtonGrid').innerHTML = hexagonsHTML
+        document.getElementById('HexButtonGrid').innerHTML = hexagonsHTML
+
+        const topLeftBtn = document.getElementById("hexBtnId-0-0")
+        topLeftBtn.onclick = e => movePlayerTopLeft()
+        const topRightBtn = document.getElementById("hexBtnId-1-0")
+        topRightBtn.onclick = e => movePlayerTopRight()
+        const leftBtn = document.getElementById("hexBtnId-0-1")
+        leftBtn.onclick = e => movePlayerLeft()
+        const rightBtn = document.getElementById("hexBtnId-2-1")
+        rightBtn.onclick = e => movePlayerRight()
+        const bottomLeftBtn = document.getElementById("hexBtnId-0-2")
+        bottomLeftBtn.onclick = e => movePlayerBottomLeft()
+        const bottomRightBtn = document.getElementById("hexBtnId-1-2")
+        bottomRightBtn.onclick = e => movePlayerBottomRight()
     }
 
 </script>

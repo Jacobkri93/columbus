@@ -78,11 +78,13 @@ body {
     float: right;
 }
 
+
 .container {
-    font-size: 0; /*disable white space between inline block element */
+    font-size: 1px; /*disable white space between inline block element */
 }
 
 .hexagon {
+
     display: inline-block;
     font-size: initial;
     text-align: center;
@@ -136,16 +138,67 @@ body {
     background-color: #4CAF50;
     color: white;
 }
-.hexButtonGrid{
 
+.hexButtonContainer::before {
+
+    content: "";
+    width: calc(var(--size) / 2 + var(--margin));
+    height: 120%;
+    float: left;
+    shape-outside: repeating-linear-gradient(
+            #0000 0 calc(var(--f) - 10px),
+            #000 0 var(--f)
+    );
+}
+
+.hexButtonContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateX(25%);
+}
+
+.hexButtonGrid{
+    height: 160px;
+    position: relative;
+    background-color: beige;
+    white-space: nowrap;
+    display: flex;
+    --size: 50px; /* size  */
+    --margin: 0px; /* margin */
+    --f: calc(1.732 * var(--size) + 4 * var(--margin) - 1px);
 }
 
 .hexButton{
-
+    display: inline-block;
+    font-size: initial;
+    text-align: center;
+    margin: var(--margin);
+    width: var(--size);
+    height: calc(var(--size) * 1.1547);
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    margin-bottom: calc(var(--margin) - var(--size) * 0.2885);
+    background-color: blueviolet;
 }
 
 div .hexagon{
     color: #ffffff;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
+}
+
+.some-1 {
+    position: absolute;
+    left: calc(var(--size) * 0.5);
+    margin: 5px 0 0 0;
+
+}.some-2 {
+     position: absolute;
+     left: 0;
+     top: var(--size);
+
+}.some-3 {
+      position: absolute;
+      top: calc((var(--size) * 2) - 5px );
+      left: calc(var(--size) * 0.5);
 }
